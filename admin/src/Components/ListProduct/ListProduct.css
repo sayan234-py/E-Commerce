@@ -1,0 +1,158 @@
+/* ================= ROOT ================= */
+
+.listproduct {
+  min-height: 100vh;
+  width: 100%;
+  padding: 40px;
+  background: radial-gradient(circle at top, #101737, #050814);
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+/* ================= TITLE ================= */
+
+.listproduct h1 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  background: linear-gradient(90deg, #5b8dff, #9a7bff, #4dfcff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ================= HEADER ROW ================= */
+
+.listproduct-format-main {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1fr 1fr 1fr 0.6fr;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+
+  border-radius: 16px;
+  background: linear-gradient(180deg, #121a3a, #0a1027);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #b5c0ff;
+  box-sizing: border-box;
+}
+
+/* ================= PRODUCT LIST ================= */
+
+.listproduct-allproducts {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.listproduct-allproducts hr {
+  display: none;
+}
+
+/* ================= PRODUCT ROW ================= */
+
+.listproduct-format {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1fr 1fr 1fr 0.6fr;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+
+  margin-top: 14px;
+  background: linear-gradient(180deg, #101830, #0c1226);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+
+  color: #e2e8ff;
+  font-size: 14px;
+
+  box-sizing: border-box;
+  animation: rowEnter 0.6s ease-out;
+  transition: all 0.35s ease;
+}
+
+@keyframes rowEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hover effect */
+.listproduct-format:hover {
+  box-shadow:
+    0 0 30px rgba(91, 141, 255, 0.25),
+    0 0 60px rgba(124, 77, 255, 0.15);
+  transform: translateY(-4px);
+}
+
+/* ================= PRODUCT IMAGE ================= */
+
+.listproduct-product-icon {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #5b8dff, #9a7bff, #4dfcff);
+  padding: 2px;
+
+  box-shadow: 0 0 14px rgba(91, 141, 255, 0.6);
+}
+
+/* ================= TEXT ================= */
+
+.listproduct-format p {
+  color: #d6ddff;
+  margin: 0;
+}
+
+#line {
+  text-decoration: line-through;
+  color: #ff8a8a;
+}
+
+/* ================= DELETE ICON ================= */
+
+.listproduct-format img:last-child {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  filter: drop-shadow(0 0 6px rgba(255, 80, 80, 0.6));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.listproduct-format img:last-child:hover {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 0 14px rgba(255, 80, 80, 0.9));
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 900px) {
+  .listproduct {
+    padding: 24px;
+  }
+
+  .listproduct-format-main,
+  .listproduct-format {
+    grid-template-columns: 1fr 2fr 1fr;
+    font-size: 13px;
+  }
+
+  .listproduct-format-main p:nth-child(3),
+  .listproduct-format-main p:nth-child(4),
+  .listproduct-format-main p:nth-child(5),
+  .listproduct-format p:nth-child(3),
+  .listproduct-format p:nth-child(4),
+  .listproduct-format p:nth-child(5) {
+    display: none;
+  }
+}

@@ -1,0 +1,173 @@
+/* ================= NAVBAR ================= */
+
+.navbar {
+  width: 100%;
+  height: 72px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 30px;
+
+  background: linear-gradient(180deg, #ffffff, #f6f9ff);
+  border-bottom: 1px solid rgba(91, 141, 255, 0.25);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.06),
+    0 0 30px rgba(91, 141, 255, 0.25);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle animated neon line */
+.navbar::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 200%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #5b8dff,
+    #9a7bff,
+    #4dfcff,
+    transparent
+  );
+
+  animation: navbarGlow 6s linear infinite;
+}
+
+@keyframes navbarGlow {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+
+/* ================= LOGO ================= */
+
+.nav-logo {
+  height: 36px;
+  object-fit: contain;
+  cursor: pointer;
+
+  filter:
+    drop-shadow(0 0 6px rgba(91, 141, 255, 0.6))
+    drop-shadow(0 0 14px rgba(124, 123, 255, 0.4));
+
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.nav-logo:hover {
+  transform: translateY(-2px) scale(1.03);
+  filter:
+    drop-shadow(0 0 10px rgba(91, 141, 255, 0.9))
+    drop-shadow(0 0 22px rgba(124, 123, 255, 0.7));
+}
+
+/* ================= PROFILE ================= */
+
+.nav-profile {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  background: linear-gradient(135deg, #5b8dff, #9a7bff, #4dfcff);
+  padding: 3px;
+
+  box-shadow:
+    0 0 18px rgba(91, 141, 255, 0.8),
+    0 0 32px rgba(124, 123, 255, 0.6);
+
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Inner image stays circular */
+.nav-profile img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+/* Hover pulse */
+.nav-profile:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow:
+    0 0 30px rgba(91, 141, 255, 1),
+    0 0 55px rgba(124, 123, 255, 0.8);
+}
+
+/* ================= TOGGLE ================= */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.theme-toggle {
+  width: 54px;
+  height: 28px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #dbe4ff, #f1f4ff);
+  position: relative;
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 0 8px rgba(0,0,0,0.15),
+    0 0 12px rgba(91,141,255,0.4);
+
+  transition: background 0.4s ease;
+}
+
+.theme-toggle .toggle-dot {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+
+  background: linear-gradient(135deg, #ffffff, #dbe4ff);
+  box-shadow: 0 0 10px rgba(91,141,255,0.8);
+
+  transition: transform 0.4s ease;
+}
+
+/* Active (Dark / Neon) */
+.theme-toggle.active {
+  background: linear-gradient(135deg, #5b8dff, #9a7bff);
+}
+
+.theme-toggle.active .toggle-dot {
+  transform: translateX(26px);
+  background: linear-gradient(135deg, #0b1027, #1b2340);
+  box-shadow:
+    0 0 14px rgba(124,123,255,1),
+    0 0 28px rgba(91,141,255,0.9);
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 18px;
+    height: 64px;
+  }
+
+  .nav-logo {
+    height: 32px;
+  }
+
+  .nav-profile {
+    width: 38px;
+    height: 38px;
+  }
+}
