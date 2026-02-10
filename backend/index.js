@@ -232,6 +232,29 @@ app.post("/getcart", fetchUser, async (req, res) => {
   res.json(userData.cartData);
 });
 
+/* ---------------- New Collection ---------------- */
+app.get("/newcollections", async (req, res) => {
+  try {
+    const products = await Product.find({})
+      .sort({ date: -1 })
+      .limit(8);
+
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+/* ---------------- Popular in Women ---------------- */
+app.get("/popinwoman", async (req, res) => {
+  try {
+    const products = await Product.find({ category: "women" }).limit(8);
+    res.json(products);
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 
 /* ---------------- Server ---------------- */
 app.listen(port, () => {
