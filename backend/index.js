@@ -109,7 +109,7 @@ app.post("/addproduct", async (req, res) => {
 
 /* ---------------- Remove Product ---------------- */
 app.post("/removeproduct", async (req, res) => {
-  const deleted = await Product.findOneAndDelete({ id: req.body.id });
+  const deleted = await Product.findOneAndDelete({ id: req.body.id }); 
   if (!deleted)
     return res.status(404).json({ success: false, message: "Product not found" });
 
@@ -183,25 +183,55 @@ const fetchUser = async (req, res, next) => {
 
 /* ---------------- Cart APIs ---------------- */
 app.post("/addtocart", fetchUser, async (req, res) => {
-  let userData = await Users.findById(req.user.id);
+  const userData = await Users.findById(req.user.id);
+
+  if (!userData) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  if (!userData.cartData[req.body.itemId]) {
+    userData.cartData[req.body.itemId] = 0;
+  }
+
   userData.cartData[req.body.itemId] += 1;
-  await Users.findByIdAndUpdate(req.user.id, { cartData: userData.cartData });
-  res.send("Added");
+
+  await Users.findByIdAndUpdate(req.user.id, {
+    cartData: userData.cartData,
+  });
+
+  res.json({ success: true });
 });
+
 
 app.post("/removefromcart", fetchUser, async (req, res) => {
-  let userData = await Users.findById(req.user.id);
-  if (userData.cartData[req.body.itemId] > 0)
-    userData.cartData[req.body.itemId] -= 1;
+  const userData = await Users.findById(req.user.id);
 
-  await Users.findByIdAndUpdate(req.user.id, { cartData: userData.cartData });
-  res.send("Removed");
+  if (!userData) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
+  if (userData.cartData[req.body.itemId] > 0) {
+    userData.cartData[req.body.itemId] -= 1;
+  }
+
+  await Users.findByIdAndUpdate(req.user.id, {
+    cartData: userData.cartData,
+  });
+
+  res.json({ success: true });
 });
+
 
 app.post("/getcart", fetchUser, async (req, res) => {
-  let userData = await Users.findById(req.user.id);
+  const userData = await Users.findById(req.user.id);
+
+  if (!userData) {
+    return res.status(404).json({ error: "User not found" });
+  }
+
   res.json(userData.cartData);
 });
+
 
 /* ---------------- Server ---------------- */
 app.listen(port, () => {
