@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./NewCollections.css";
 import Item from "../Item/Item";
-
-const API_URL =
-  process.env.REACT_APP_API_URL || "http://localhost:5001";
+import API_URL from "../../config";
 
 const NewCollections = () => {
-  const [new_collection, setNewcollection] = useState([]);
+  const [newCollection, setNewCollection] = useState([]);
 
   useEffect(() => {
     const fetchNewCollections = async () => {
@@ -14,13 +12,13 @@ const NewCollections = () => {
         const response = await fetch(`${API_URL}/newcollections`);
 
         if (!response.ok) {
-          throw new Error("Failed to fetch new collections");
+          throw new Error("Failed to fetch collections");
         }
 
         const data = await response.json();
-        setNewcollection(data);
+        setNewCollection(data);
       } catch (error) {
-        console.error("Error fetching new collections:", error);
+        console.error("Error:", error);
       }
     };
 
@@ -32,10 +30,10 @@ const NewCollections = () => {
       <h1>NEW COLLECTIONS</h1>
       <hr />
       <div className="collections">
-        {new_collection.map((item) => (
+        {newCollection.map((item) => (
           <Item
             key={item.id}
-            id={item.id}                 
+            id={item.id}
             image={item.image}
             name={item.name}
             new_price={item.new_price}
