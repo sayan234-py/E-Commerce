@@ -1,0 +1,11 @@
+.bredcrum{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #5e5e5e;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 30px 50px;
+    /* border: .5px solid black; */
+    text-transform: capitalize;
+}

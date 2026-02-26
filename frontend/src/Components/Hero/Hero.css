@@ -1,0 +1,156 @@
+.hero {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  background: linear-gradient(180deg, #fde1ff 0%, #e1ffea22 60%);
+  padding: 0 5%;
+  box-sizing: border-box;
+}
+
+/* ================= LEFT ================= */
+
+.hero-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  padding-left: 80px;
+}
+
+.hero-left h2 {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+
+.hand-icon-line {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hand-icon-line p {
+  font-size: 64px;
+  font-weight: 700;
+  color: #171717;
+  margin: 0;
+  text-align: left;
+}
+
+.hand-icon-line img {
+  width: 50px;
+  height: auto;
+}
+
+.hero-text p {
+  font-size: 64px;
+  font-weight: 700;
+  color: #171717;
+  margin: 0;
+}
+
+.hero-latest-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  width: fit-content;
+  padding: 20px 40px;
+  border-radius: 50px;
+  background-color: #ff4141;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-latest-button:hover {
+  background-color: #e33434;
+}
+
+.hero-latest-button img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ================= RIGHT ================= */
+
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-right img {
+  width: 100%;
+  max-width: 500px;
+  object-fit: contain;
+}
+
+/* ================= MOBILE VIEW ================= */
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+    min-height: auto;
+    padding: 40px 6%;
+    text-align: center;
+  }
+
+  .hero-left {
+    padding-left: 0;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .hero-left h2 {
+    font-size: 14px;
+  }
+
+  .hand-icon-line {
+    justify-content: center;
+  }
+
+  .hand-icon-line p,
+  .hero-text p {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+
+  .hand-icon-line img {
+    width: 36px;
+  }
+
+  .hero-latest-button {
+    padding: 14px 28px;
+    font-size: 16px;
+  }
+
+  .hero-right img {
+    max-width: 280px;
+  }
+}
+
+/* ================= VERY SMALL PHONES ================= */
+
+@media (max-width: 480px) {
+  .hand-icon-line p,
+  .hero-text p {
+    font-size: 30px;
+  }
+
+  .hero-right img {
+    max-width: 240px;
+  }
+}

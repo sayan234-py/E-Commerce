@@ -1,0 +1,128 @@
+
+*{
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.productdisplay{
+    display: flex;
+    margin: 0px 60px;
+}
+.productdisplay-left{
+    display: flex;
+    gap: 17px;
+    border:.5px solid #1c1c1c;
+}
+.productdisplay-img-list{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border:.5px solid #1c1c1c;
+}
+.productdisplay-img-list img{
+    height: 133px;
+}
+.productdisplay-main-img{
+    width: 506px;
+    height: 580px;
+}
+.productdisplay-right{
+    margin: 0px 70px;
+}
+.productdisplay-right h1{
+    color: #3d3d3d;
+    font-size: 40px;
+    font-weight: 700;
+}
+.productdisplay-right-star{
+    display: flex;
+    align-items: center;
+    margin-top: 13px;
+    gap: 5px;
+    color: #1c1c1c;
+    font-size: 16px;
+}
+.productdisplay-right-prices{
+    display: flex;
+    margin: 20px 0px;
+    gap: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+.productdisplay-right-price-old {
+  color: #888;
+  text-decoration: line-through;
+  font-size: 20px;
+}
+.productdisplay-right-price-new {
+  color: #d32f2f;
+  font-size: 24px;
+  font-weight: 600;
+}
+.productdisplay-right-description {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+.productdisplay-right-size h1{
+  margin-top: 25px;
+  color: #656565;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.productdisplay-right-sizes{
+  display: flex;
+  margin: 30px 0px;
+  gap: 20px;
+}
+.productdisplay-right-sizes div{
+  height: 4vh;
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: .7px solid #565656;
+  border-radius: 3px;
+  font-weight: 700;
+}
+.productdisplay-right button{
+  width: 10vw;
+  height: 4vh;
+  font-size: larger;
+  font-weight: 600;
+  background-color: #dd6611;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.productdisplay-right-category{
+  margin-top: 10px;
+}
+.productdisplay-right-category span{
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .productdisplay {
+    flex-direction: column;
+    margin: 30px 20px;
+  }
+
+  .productdisplay-main-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .productdisplay-img-list {
+    flex-direction: row;
+    justify-content: center;
+    display: none;
+  }
+
+  .productdisplay-right h1 {
+    font-size: 26px;
+  }
+}

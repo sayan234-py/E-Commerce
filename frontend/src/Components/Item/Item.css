@@ -1,0 +1,51 @@
+.item {
+  width: 100%;                
+  max-width: 350px;           
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.item p {
+  margin: 6px 0;
+}
+
+.item-prices {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;           
+}
+
+.item-price-new {
+  color: #374151;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.item-price-old {
+  color: #8c8c8c;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: line-through;
+}
+
+.item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+.item-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
