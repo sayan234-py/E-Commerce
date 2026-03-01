@@ -1,40 +1,26 @@
-import React, { useContext } from 'react';
-import { ShopContext } from '../Context/ShopContext';
-import { useParams } from 'react-router-dom';
-import Bredcrum from '../Components/Bredcrums/Bredcrum';
-import ProductDisplay from '../Components/ProductDispaly/ProductDisplay';
-import DescriptionBox from '../Components/DescriptionBox/DescriptionBox';
-import RelatedProducts from '../Components/RelatedProducts/RelatedProducts';
+import React, { useContext } from "react";
+import { ShopContext } from "../Context/ShopContext";
+import { useParams } from "react-router-dom";
+import ProductDisplay from "../Components/ProductDispaly/ProductDisplay";
 
 const Product = () => {
   const { all_product } = useContext(ShopContext);
   const { productId } = useParams();
 
-  // 🔴 Wait until products load
-  if (!all_product.length) {
-    return <h2 style={{padding:"40px"}}>Loading...</h2>;
+  // WAIT until products load
+  if (!all_product || all_product.length === 0) {
+    return <h2 style={{padding:"40px"}}>Loading products...</h2>;
   }
 
   const product = all_product.find(
-    (item) => item.id === Number(productId)
+    (item) => String(item.id) === String(productId)
   );
 
   if (!product) {
-    return (
-      <div className="product-not-found">
-        <h2>Product Not Found</h2>
-      </div>
-    );
+    return <h2>Product Not Found</h2>;
   }
 
-  return (
-    <div className="product-page">
-      <Bredcrum product={product} />
-      <ProductDisplay product={product} />
-      <DescriptionBox />
-      <RelatedProducts />
-    </div>
-  );
+  return <ProductDisplay product={product} />;
 };
 
 export default Product;
