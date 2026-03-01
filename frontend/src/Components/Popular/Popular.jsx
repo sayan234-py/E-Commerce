@@ -3,7 +3,8 @@ import "./Popular.css";
 import Item from "../Item/Item";
 
 const API_URL =
-  process.env.REACT_APP_API_URL || "http://localhost:5001";
+  process.env.REACT_APP_API_URL ||
+  "https://e-commerce-1-6kbc.onrender.com";
 
 const Popular = () => {
   const [pop_in_woman, setPop_in_woman] = useState([]);
@@ -11,16 +12,11 @@ const Popular = () => {
   useEffect(() => {
     const fetchPopinWoman = async () => {
       try {
-        const response = await fetch(`${API_URL}/popinwoman`);
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch popular women products");
-        }
-
+        const response = await fetch(`${API_URL}/popularwomen`);
         const data = await response.json();
         setPop_in_woman(data);
       } catch (error) {
-        console.error("Error fetching popular women products:", error);
+        console.error("Error:", error);
       }
     };
 
@@ -35,7 +31,7 @@ const Popular = () => {
         {pop_in_woman.map((item) => (
           <Item
             key={item.id}
-            id={item.id}                 
+            id={item.id}
             image={item.image}
             name={item.name}
             new_price={item.new_price}
