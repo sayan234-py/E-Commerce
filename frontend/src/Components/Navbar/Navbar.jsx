@@ -1,17 +1,18 @@
 import React, { useContext, useState } from "react";
 import "./Navbar.css";
-// import logo from "../Assets/logo.png";
-// import cart_icon from "../Assets/cart_icon.png";
 import { Link } from "react-router-dom";
 import { ShopContext } from "../../Context/ShopContext";
 
-const logo = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770889885/logo_dsiqov.png"
-const cart_icon = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770888749/cart_icon_bhrfar.png"
+const logo =
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770889885/logo_dsiqov.png";
+const cart_icon =
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770888749/cart_icon_bhrfar.png";
 
 const Navbar = () => {
   const [menu, setMenu] = useState("shop");
   const [mobileMenu, setMobileMenu] = useState(false);
-  const { getTotalCartItmes } = useContext(ShopContext);
+
+  const { getTotalCartItems } = useContext(ShopContext);
 
   return (
     <div className="navbar">
@@ -21,38 +22,31 @@ const Navbar = () => {
         <p>E-Commerce</p>
       </div>
 
-      {/* HAMBURGER */}
-      <div
-        className="hamburger"
-        onClick={() => setMobileMenu(!mobileMenu)}
-      >
+      {/* MENU BUTTON */}
+      <div className="hamburger" onClick={() => setMobileMenu(!mobileMenu)}>
         ☰
       </div>
 
       {/* MENU */}
       <ul className={`navmenu ${mobileMenu ? "active" : ""}`}>
-        <li onClick={() => { setMenu("shop"); setMobileMenu(false); }}>
+        <li onClick={() => setMenu("shop")}>
           <Link to="/">SHOP</Link>
-          {menu === "shop" && <hr />}
         </li>
 
-        <li onClick={() => { setMenu("men"); setMobileMenu(false); }}>
+        <li onClick={() => setMenu("men")}>
           <Link to="/mens">MEN</Link>
-          {menu === "men" && <hr />}
         </li>
 
-        <li onClick={() => { setMenu("women"); setMobileMenu(false); }}>
+        <li onClick={() => setMenu("women")}>
           <Link to="/womens">WOMEN</Link>
-          {menu === "women" && <hr />}
         </li>
 
-        <li onClick={() => { setMenu("kids"); setMobileMenu(false); }}>
+        <li onClick={() => setMenu("kids")}>
           <Link to="/kids">KIDS</Link>
-          {menu === "kids" && <hr />}
         </li>
       </ul>
 
-      {/* LOGIN + CART (ALWAYS VISIBLE) */}
+      {/* LOGIN + CART */}
       <div className="nav-login-cart">
         {localStorage.getItem("auth-token") ? (
           <button
@@ -70,10 +64,12 @@ const Navbar = () => {
         )}
 
         <Link to="/cart">
-          <img src={cart_icon} alt="Cart Icon" className="cart-icon" />
+          <img src={cart_icon} alt="cart" className="cart-icon" />
         </Link>
 
-        <div className="nav-cart-count">{getTotalCartItmes()}</div>
+        <div className="nav-cart-count">
+          {getTotalCartItems()}
+        </div>
       </div>
     </div>
   );
