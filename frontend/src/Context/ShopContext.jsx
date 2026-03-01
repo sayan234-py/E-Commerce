@@ -3,7 +3,7 @@ import React, { createContext, useState, useEffect } from "react";
 export const ShopContext = createContext(null);
 
 /* ================= API BASE ================= */
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5001";
+const API_URL = process.env.REACT_APP_API_URL ||"https://e-commerce-1-6kbc.onrender.com";
 
 const ShopContextProvider = (props) => {
   const [all_product, setAll_products] = useState([]);
