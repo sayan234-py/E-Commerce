@@ -154,6 +154,19 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// =================  =================
+app.get("/newcollections", async (req, res) => {
+  try {
+    const products = await Product.find({})
+      .sort({ date: -1 })
+      .limit(8);
+
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // ================= START =================
 app.listen(port, () => {
   console.log("🚀 Server running on port", port);
