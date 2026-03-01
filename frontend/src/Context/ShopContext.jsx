@@ -12,11 +12,17 @@ const ShopContextProvider = ({ children }) => {
 
   /* ---------- FETCH PRODUCTS ---------- */
   useEffect(() => {
-    fetch(`${API_URL}/allproducts`)
-      .then((res) => res.json())
-      .then((data) => setAll_products(data))
-      .catch((err) => console.error("Product fetch error:", err));
-  }, []);
+  const loadProducts = async () => {
+    try {
+      const res = await fetch(`${API_URL}/allproducts`);
+      const data = await res.json();
+      setAll_products(data);
+    } catch (err) {
+      setTimeout(loadProducts, 3000);
+    }
+  };
+  loadProducts();
+}, []);
 
   /* ---------- FETCH CART ---------- */
   useEffect(() => {
