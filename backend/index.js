@@ -1,4 +1,4 @@
-// ================= IMPORTS =================
+ // ================= IMPORTS =================
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
@@ -165,6 +165,30 @@ app.get("/newcollections", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+});
+
+// ================= CART APIs =================
+let userCart = {};   // simple memory cart for now
+
+app.post("/getcart", (req, res) => {
+  res.json(userCart);
+});
+
+app.post("/addtocart", (req, res) => {
+  const { itemId } = req.body;
+
+  if (!userCart[itemId]) userCart[itemId] = 0;
+  userCart[itemId]++;
+
+  res.json({ success: true });
+});
+
+app.post("/removefromcart", (req, res) => {
+  const { itemId } = req.body;
+
+  if (userCart[itemId] > 0) userCart[itemId]--;
+
+  res.json({ success: true });
 });
 
 // ================= START =================
