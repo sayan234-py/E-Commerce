@@ -9,22 +9,32 @@ const API_URL =
 const ShopContextProvider = ({ children }) => {
   const [all_product, setAll_products] = useState([]);
   const [cartItems, setCartItems] = useState({});
-  const [loading, setLoading] = useState(true);
 
-  /* FETCH PRODUCTS */
+  /* ---------- FETCH PRODUCTS ---------- */
   useEffect(() => {
     fetch(`${API_URL}/allproducts`)
       .then((res) => res.json())
-      .then((data) => {
-        setAll_products(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Product fetch error:", err);
-        setLoading(false);
-      });
+      .then((data) => setAll_products(data))
+      .catch((err) => console.error("Product fetch error:", err));
   }, []);
 
+  /* ---------- FETCH CART ---------- */
+  useEffect(() => {
+    if (localStorage.getItem("auth-token")) {
+      fetch(`${API_URL}/getcart`, {
+        method: "POST",
+        headers: {
+          "auth-token": localStorage.getItem("auth-token"),
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setCartItems(data || {}))
+        .catch((err) => console.error("Cart fetch error:", err));
+    }
+  }, []);
+
+  /* ---------- ADD TO CART ---------- */
   const addToCart = (itemId) => {
     setCartItems((prev) => ({
       ...prev,
@@ -32,10 +42,33 @@ const ShopContextProvider = ({ children }) => {
     }));
   };
 
+  /* ---------- REMOVE FROM CART ---------- */
+  const removeFromCart = (itemId) => {
+    setCartItems((prev) => ({
+      ...prev,
+      [itemId]: Math.max((prev[itemId] || 0) - 1, 0),
+    }));
+  };
+
+  /* ---------- TOTAL CART ITEMS ---------- */
+  const getTotalCartItems = () => {
+    let total = 0;
+    for (const item in cartItems) {
+      total += cartItems[item];
+    }
+    return total;
+  };
+
+  const contextValue = {
+    all_product,
+    cartItems,
+    addToCart,
+    removeFromCart,
+    getTotalCartItems,
+  };
+
   return (
-    <ShopContext.Provider
-      value={{ all_product, cartItems, addToCart, loading }}
-    >
+    <ShopContext.Provider value={contextValue}>
       {children}
     </ShopContext.Provider>
   );
