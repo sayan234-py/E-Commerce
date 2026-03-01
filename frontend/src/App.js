@@ -23,7 +23,7 @@ function App() {
         <Route path='/womens' element={<ShopCategory category="women" banner={women_banner} />} />
         <Route path='/kids' element={<ShopCategory category="kid" banner={kid_banner} />} />
 
-        {/* FIXED ROUTE */}
+        {/* IMPORTANT FIX */}
         <Route path="/product/:productId" element={<Product />} />
 
         <Route path='/login' element={<LoginSignup />} />
