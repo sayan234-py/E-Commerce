@@ -1,27 +1,28 @@
-import React from 'react'
-import data_product from '../Assets/data'
-import Item from '../Item/Item'
-import './RelatedProducts.css';
+import React, { useContext } from "react";
+import { ShopContext } from "../../Context/ShopContext";
+import Item from "../Item/Item";
 
+const RelatedProducts = ({ product }) => {
+  const { all_product } = useContext(ShopContext);
 
-const RelatedProducts = () => {
+  if (!product || !all_product.length) return null;
+
+  const related = all_product.filter(
+    (item) =>
+      item.category === product.category &&
+      item.id !== product.id
+  );
+
   return (
-    <div className='relatedrrpoducts'>
-        <h1>Related Products</h1>
-        <hr />
-        <div className="relatedrrpoducts-item">
-            {data_product.map((item, i) => (
-          <Item
-            key={i}
-            image={item.image}
-            name={item.name}
-            new_price={item.new_price}
-            old_price={item.old_price}
-          />
+    <div>
+      <h2>Related Products</h2>
+      <div>
+        {related.slice(0, 4).map((item) => (
+          <Item key={item.id} {...item} />
         ))}
-        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default RelatedProducts;
