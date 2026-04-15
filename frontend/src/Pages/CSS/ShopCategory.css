@@ -147,10 +147,11 @@
 /* ================= SMALL MOBILE ================= */
 @media (max-width: 480px) {
   .shopcategory-products {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr); /* ✅ keep 2 columns */
+    gap: 12px;
   }
 
   .item img {
-    height: 220px;
+    height: 160px; /* slightly smaller for better fit */
   }
 }
