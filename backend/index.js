@@ -1,9 +1,10 @@
- // ================= IMPORTS =================
+// ================= IMPORTS =================
 const express = require("express");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 const cloudinary = require("cloudinary").v2;
 const streamifier = require("streamifier");
 require("dotenv").config();
@@ -12,20 +13,12 @@ const app = express();
 const port = process.env.PORT || 5001;
 
 // ================= CHECK ENV =================
-if (!process.env.MONGO_URI) {
-  console.log("❌ MONGO_URI not found!");
-}
-if (!process.env.JWT_SECRET) {
-  console.log("❌ JWT_SECRET not found!");
-}
+if (!process.env.MONGO_URI) console.log("❌ MONGO_URI not found!");
+if (!process.env.JWT_SECRET) console.log("❌ JWT_SECRET not found!");
 
 // ================= MIDDLEWARE =================
 app.use(express.json());
-app.use(
-  cors({
-    origin: "*", // later change to frontend URL
-  })
-);
+app.use(cors({ origin: "*" })); // change to your frontend URL in production
 
 // ================= MONGODB =================
 mongoose
@@ -57,6 +50,21 @@ const uploadToCloudinary = (buffer) =>
     streamifier.createReadStream(buffer).pipe(stream);
   });
 
+// ================= AUTH MIDDLEWARE =================
+const fetchUser = (req, res, next) => {
+  const token = req.headers["auth-token"];
+  if (!token) {
+    return res.status(401).json({ error: "No auth token provided" });
+  }
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded; // { id: user._id }
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: "Invalid or expired token" });
+  }
+};
+
 // ================= TEST =================
 app.get("/", (req, res) => {
   res.send("✅ Express server running");
@@ -74,6 +82,17 @@ const productSchema = new mongoose.Schema({
 });
 
 const Product = mongoose.model("Product", productSchema);
+
+// ================= USER MODEL =================
+// cartData stores { itemId: quantity } per user in MongoDB
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: { type: String, unique: true },
+  password: String,
+  cartData: { type: Object, default: {} },
+});
+
+const Users = mongoose.model("Users", userSchema);
 
 // ================= ALL PRODUCTS =================
 app.get("/allproducts", async (req, res) => {
@@ -97,6 +116,16 @@ app.get("/popularwomen", async (req, res) => {
   }
 });
 
+// ================= NEW COLLECTIONS =================
+app.get("/newcollections", async (req, res) => {
+  try {
+    const products = await Product.find({}).sort({ date: -1 }).limit(8);
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // ================= ADD PRODUCT =================
 app.post("/addproduct", async (req, res) => {
   try {
@@ -113,20 +142,21 @@ app.post("/addproduct", async (req, res) => {
   }
 });
 
-// ================= USERS =================
-const Users = mongoose.model("Users", {
-  name: String,
-  email: String,
-  password: String,
-});
-
 // ================= SIGNUP =================
 app.post("/signup", async (req, res) => {
   try {
     const exists = await Users.findOne({ email: req.body.email });
-    if (exists) return res.json({ success: false, msg: "User exists" });
+    if (exists) return res.json({ success: false, msg: "User already exists" });
 
-    const user = new Users(req.body);
+    // ✅ Hash the password before saving
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+    const user = new Users({
+      name: req.body.name,
+      email: req.body.email,
+      password: hashedPassword,
+      cartData: {},
+    });
     await user.save();
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
@@ -143,8 +173,9 @@ app.post("/login", async (req, res) => {
     const user = await Users.findOne({ email: req.body.email });
     if (!user) return res.json({ success: false, msg: "Wrong email" });
 
-    if (user.password !== req.body.password)
-      return res.json({ success: false, msg: "Wrong password" });
+    // ✅ Compare against hashed password
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
+    if (!isMatch) return res.json({ success: false, msg: "Wrong password" });
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
     res.json({ success: true, token });
@@ -154,41 +185,52 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// =================  =================
-app.get("/newcollections", async (req, res) => {
+// ================= CART: GET =================
+app.post("/getcart", fetchUser, async (req, res) => {
   try {
-    const products = await Product.find({})
-      .sort({ date: -1 })
-      .limit(8);
-
-    res.json(products);
+    const user = await Users.findById(req.user.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.json(user.cartData || {});
   } catch (err) {
+    console.log("Getcart error:", err.message);
     res.status(500).json({ error: err.message });
   }
 });
 
-// ================= CART APIs =================
-let userCart = {};   // simple memory cart for now
+// ================= CART: ADD =================
+app.post("/addtocart", fetchUser, async (req, res) => {
+  try {
+    const { itemId } = req.body;
+    const user = await Users.findById(req.user.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
 
-app.post("/getcart", (req, res) => {
-  res.json(userCart);
+    const cart = user.cartData || {};
+    cart[itemId] = (cart[itemId] || 0) + 1;
+
+    await Users.findByIdAndUpdate(req.user.id, { cartData: cart });
+    res.json({ success: true });
+  } catch (err) {
+    console.log("Addtocart error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
-app.post("/addtocart", (req, res) => {
-  const { itemId } = req.body;
+// ================= CART: REMOVE =================
+app.post("/removefromcart", fetchUser, async (req, res) => {
+  try {
+    const { itemId } = req.body;
+    const user = await Users.findById(req.user.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
 
-  if (!userCart[itemId]) userCart[itemId] = 0;
-  userCart[itemId]++;
+    const cart = user.cartData || {};
+    if (cart[itemId] > 0) cart[itemId]--;
 
-  res.json({ success: true });
-});
-
-app.post("/removefromcart", (req, res) => {
-  const { itemId } = req.body;
-
-  if (userCart[itemId] > 0) userCart[itemId]--;
-
-  res.json({ success: true });
+    await Users.findByIdAndUpdate(req.user.id, { cartData: cart });
+    res.json({ success: true });
+  } catch (err) {
+    console.log("Removefromcart error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // ================= START =================
