@@ -2,41 +2,31 @@ import React, { useContext } from "react";
 import "./CartItmes.css";
 import { ShopContext } from "../../Context/ShopContext";
 import remove_icon from "../Assets/cart_cross_icon.png";
-
 const CartItems = () => {
   const { all_product, cartItems, removeFromCart } =
     useContext(ShopContext);
-
   /* ---------------- TOTAL CALCULATION ---------------- */
   const getTotalCartAmount = () => {
     let totalAmount = 0;
-
     if (!all_product || all_product.length === 0) return 0;
-
     for (const itemId in cartItems) {
       const quantity = cartItems[itemId];
       if (quantity > 0) {
         const itemInfo = all_product.find(
           (product) => product.id === Number(itemId)
         );
-
         
         if (!itemInfo) continue;
-
         totalAmount += itemInfo.new_price * quantity;
       }
     }
-
     return totalAmount;
   };
-
   if (!all_product || all_product.length === 0) {
     return <p style={{ padding: "40px" }}>Loading cart...</p>;
   }
-
   return (
     <div className="cartitems">
-
       <div className="cartitems-format-main">
         <p>Products</p>
         <p>Title</p>
@@ -46,8 +36,6 @@ const CartItems = () => {
         <p>Remove</p>
       </div>
       <hr />
-
-
       {all_product.map((e) => {
         const quantity = cartItems?.[e.id] || 0;
         if (quantity > 0) {
@@ -75,8 +63,6 @@ const CartItems = () => {
         }
         return null;
       })}
-
-
       <div className="cartitmes-down">
         <div className="cartitmes-total">
           <h1>Cart Totals</h1>
@@ -100,7 +86,6 @@ const CartItems = () => {
         </div>
         <button>Checkout</button>
       </div>
-
       {/* PROMO CODE */}
       <div className="cartitmes-promocode">
         <p>If You Have a Promo Code, Enter Here</p>
@@ -112,5 +97,4 @@ const CartItems = () => {
     </div>
   );
 };
-
 export default CartItems;
