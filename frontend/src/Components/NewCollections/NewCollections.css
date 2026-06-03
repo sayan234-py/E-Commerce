@@ -1,72 +1,56 @@
 .new-collections {
-  padding: 40px 60px;
-  background: #f9fafb;
+  padding: 80px 60px;
+  background: var(--bg-subtle);
+}
+
+.new-collections .section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 48px;
   text-align: center;
 }
 
+.new-collections .section-tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
 .new-collections h1 {
-  font-size: 32px;
-  font-weight: 600;
-  color: #222;
-  margin-bottom: 10px;
+  font-family: var(--font-display);
+  font-size: 42px;
+  font-weight: 300;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
 }
 
-.new-collections hr {
-  width: 80px;
-  height: 4px;
-  background: #ff4141;
-  border: none;
-  margin: 10px auto 30px;
-  border-radius: 2px;
-}
-
-/* Grid Layout */
 .collections {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
+  gap: 20px;
 }
 
-/* Card Styling */
-.collections > * {
-  background: transparent;
-  padding: 0;
-  box-shadow: none;
-}
-
-/* Hover Effect */
-.collections > *:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-/* Tablet */
 @media (max-width: 1024px) {
   .collections {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-/* Mobile (2 cards per row) */
 @media (max-width: 768px) {
   .new-collections {
-    padding: 30px 20px;
-  }
-
-  .collections {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-  }
-}
-
-/* Small Mobile */
-@media (max-width: 480px) {
-  .collections {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    padding: 60px 20px;
   }
 
   .new-collections h1 {
-    font-size: 24px;
+    font-size: 32px;
+  }
+
+  .collections {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 }
