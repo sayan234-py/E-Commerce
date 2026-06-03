@@ -10,25 +10,22 @@ const NewCollections = () => {
     const fetchNewCollections = async () => {
       try {
         const response = await fetch(`${API_URL}/newcollections`);
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch collections");
-        }
-
+        if (!response.ok) throw new Error("Failed to fetch collections");
         const data = await response.json();
         setNewCollection(data);
       } catch (error) {
         console.error("Error:", error);
       }
     };
-
     fetchNewCollections();
   }, []);
 
   return (
     <div className="new-collections">
-      <h1>NEW COLLECTIONS</h1>
-      <hr />
+      <div className="section-header">
+        <span className="section-tag">Just Arrived</span>
+        <h1>New Collections</h1>
+      </div>
       <div className="collections">
         {newCollection.map((item) => (
           <Item
