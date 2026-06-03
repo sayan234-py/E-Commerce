@@ -1,97 +1,166 @@
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0 60px;
+  height: 72px;
+  background: rgba(247, 245, 240, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
 }
 
 .nav_logo {
   display: flex;
   align-items: center;
+  gap: 10px;
 }
 
 .nav_logo img {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.nav_logo p {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-primary);
 }
 
 .navmenu {
   list-style: none;
   display: flex;
-  gap: 20px;
+  align-items: center;
+  gap: 40px;
 }
 
 .navmenu li {
-  cursor: pointer;
+  position: relative;
 }
-.navmenu li a{
-    text-decoration: none;
-    color: black;
-    font-size: 16px;
-    font-weight: 500;
+
+.navmenu li a {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.navmenu li a:hover {
+  color: var(--text-primary);
+}
+
+.navmenu li a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.navmenu li a:hover::after {
+  width: 100%;
 }
 
 .nav-login-cart {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 .nav-login-cart button {
-  padding: 5px 10px;
-  border: none;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 10px 22px;
+  border: 1px solid var(--text-primary);
+  background: transparent;
+  color: var(--text-primary);
+  border-radius: var(--radius);
+  transition: var(--transition);
+}
+
+.nav-login-cart button:hover {
+  background: var(--text-primary);
+  color: var(--bg);
+}
+
+.cart-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .nav-login-cart .cart-icon {
-  width: 30px;
-  height: 30px;
-}
-.nav-cart-count{
-    position: relative;
-    top: -10px;
-    left: -22px;
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 2px 6px;
-    font-size: 12px;
-}
-.hamburger {
-  display: none;
-  font-size: 26px;
-  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  filter: brightness(0);
+  transition: var(--transition);
 }
 
-/* ================= MOBILE NAVBAR ================= */
+.nav-login-cart .cart-icon:hover {
+  opacity: 0.6;
+}
+
+.nav-cart-count {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.hamburger {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--text-primary);
+  background: none;
+  border: none;
+}
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 10px 16px;
+    padding: 0 20px;
+    height: 60px;
   }
 
   .hamburger {
     display: block;
   }
 
-  /* Hide menu initially */
   .navmenu {
-    position: absolute;
+    position: fixed;
     top: 60px;
     left: 0;
     width: 100%;
-    background: #fff;
+    height: calc(100vh - 60px);
+    background: var(--bg);
     flex-direction: column;
-    display: none;
+    justify-content: flex-start;
+    padding-top: 40px;
     gap: 0;
-    z-index: 100;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: none;
   }
 
   .navmenu.active {
@@ -99,28 +168,13 @@
   }
 
   .navmenu li {
-    padding: 14px;
+    width: 100%;
     text-align: center;
-    border-bottom: 1px solid #eee;
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
   }
 
-  /* Keep login + cart visible */
-  .nav-login-cart {
-    gap: 6px;
-  }
-
-  .nav-login-cart button {
-    padding: 4px 8px;
+  .navmenu li a {
     font-size: 14px;
-  }
-
-  .cart-icon {
-    width: 26px;
-    height: 26px;
-  }
-
-  .nav-cart-count {
-    top: -8px;
-    left: -16px;
   }
 }
