@@ -113,11 +113,25 @@ app.post("/addproduct", async (req, res) => {
   }
 });
 
+// ================= AUTH MIDDLEWARE =================
+const fetchUser = (req, res, next) => {
+  const token = req.headers["auth-token"];
+  if (!token) return res.status(401).json({ error: "No token provided" });
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch {
+    res.status(401).json({ error: "Invalid token" });
+  }
+};
+
 // ================= USERS =================
 const Users = mongoose.model("Users", {
   name: String,
-  email: String,
+  email: { type: String, unique: true },
   password: String,
+  cartData: { type: Object, default: {} },
 });
 
 // ================= SIGNUP =================
@@ -168,27 +182,49 @@ app.get("/newcollections", async (req, res) => {
 });
 
 // ================= CART APIs =================
-let userCart = {};   // simple memory cart for now
-
-app.post("/getcart", (req, res) => {
-  res.json(userCart);
+app.post("/getcart", fetchUser, async (req, res) => {
+  try {
+    const user = await Users.findById(req.user.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
+    res.json(user.cartData || {});
+  } catch (err) {
+    console.log("Getcart error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
-app.post("/addtocart", (req, res) => {
-  const { itemId } = req.body;
+app.post("/addtocart", fetchUser, async (req, res) => {
+  try {
+    const { itemId } = req.body;
+    const user = await Users.findById(req.user.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
 
-  if (!userCart[itemId]) userCart[itemId] = 0;
-  userCart[itemId]++;
+    const cart = user.cartData || {};
+    cart[itemId] = (cart[itemId] || 0) + 1;
+    await Users.findByIdAndUpdate(req.user.id, { cartData: cart });
 
-  res.json({ success: true });
+    res.json({ success: true });
+  } catch (err) {
+    console.log("Addtocart error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
-app.post("/removefromcart", (req, res) => {
-  const { itemId } = req.body;
+app.post("/removefromcart", fetchUser, async (req, res) => {
+  try {
+    const { itemId } = req.body;
+    const user = await Users.findById(req.user.id);
+    if (!user) return res.status(404).json({ error: "User not found" });
 
-  if (userCart[itemId] > 0) userCart[itemId]--;
+    const cart = user.cartData || {};
+    if (cart[itemId] > 0) cart[itemId]--;
+    await Users.findByIdAndUpdate(req.user.id, { cartData: cart });
 
-  res.json({ success: true });
+    res.json({ success: true });
+  } catch (err) {
+    console.log("Removefromcart error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // ================= START =================
