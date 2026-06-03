@@ -19,7 +19,7 @@
 
 .item-img-container {
   width: 100%;
-  aspect-ratio: 3/4;
+  height: 280px;
   overflow: hidden;
   background: var(--bg-subtle);
   position: relative;
