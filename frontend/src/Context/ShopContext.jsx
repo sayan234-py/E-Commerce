@@ -35,18 +35,56 @@ const ShopContextProvider = ({ children }) => {
     }
   }, []);
   /* ---------- ADD TO CART ---------- */
-  const addToCart = (itemId) => {
+  const addToCart = async (itemId) => {
     setCartItems((prev) => ({
       ...prev,
       [itemId]: (prev[itemId] || 0) + 1,
     }));
+    const token = localStorage.getItem("auth-token");
+    if (!token) return;
+    try {
+      await fetch(`${API_URL}/addtocart`, {
+        method: "POST",
+        headers: {
+          "auth-token": token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ itemId }),
+      });
+    } catch (err) {
+      console.error("Add to cart sync error:", err);
+      // Rollback on failure
+      setCartItems((prev) => ({
+        ...prev,
+        [itemId]: Math.max((prev[itemId] || 1) - 1, 0),
+      }));
+    }
   };
   /* ---------- REMOVE FROM CART ---------- */
-  const removeFromCart = (itemId) => {
+  const removeFromCart = async (itemId) => {
     setCartItems((prev) => ({
       ...prev,
       [itemId]: Math.max((prev[itemId] || 0) - 1, 0),
     }));
+    const token = localStorage.getItem("auth-token");
+    if (!token) return;
+    try {
+      await fetch(`${API_URL}/removefromcart`, {
+        method: "POST",
+        headers: {
+          "auth-token": token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ itemId }),
+      });
+    } catch (err) {
+      console.error("Remove from cart sync error:", err);
+      // Rollback on failure
+      setCartItems((prev) => ({
+        ...prev,
+        [itemId]: (prev[itemId] || 0) + 1,
+      }));
+    }
   };
   /* ---------- TOTAL CART ITEMS ---------- */
   const getTotalCartItems = () => {
