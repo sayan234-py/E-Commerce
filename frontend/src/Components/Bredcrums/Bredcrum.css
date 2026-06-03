@@ -1,11 +1,24 @@
-.bredcrum{
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #5e5e5e;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 30px 50px;
-    /* border: .5px solid black; */
-    text-transform: capitalize;
+.bredcrum {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 60px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.bredcrum img {
+  width: 10px;
+  height: 10px;
+  opacity: 0.4;
+}
+
+@media (max-width: 768px) {
+  .bredcrum {
+    padding: 16px 20px;
+  }
 }
