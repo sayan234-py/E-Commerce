@@ -1,1 +1,1 @@
-# Nandi Fashion- a E-Commerce Platform
+# Nandi Fashion- an E-Commerce Platform
