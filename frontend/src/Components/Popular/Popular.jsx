@@ -19,14 +19,15 @@ const Popular = () => {
         console.error("Error:", error);
       }
     };
-
     fetchPopinWoman();
   }, []);
 
   return (
     <div className="popular">
-      <h2>POPULAR IN WOMEN</h2>
-      <hr />
+      <div className="section-header">
+        <span className="section-tag">Trending Now</span>
+        <h2>Popular in Women</h2>
+      </div>
       <div className="popular-items">
         {pop_in_woman.map((item) => (
           <Item
