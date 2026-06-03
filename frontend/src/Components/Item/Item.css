@@ -20,17 +20,13 @@
 
 .item-img-container {
   width: 100%;
-  height: 320px;
   overflow: hidden;
-  background: transparent;
   position: relative;
 }
 
 .item-img-container img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
   display: block;
   transition: transform 0.5s ease;
 }
@@ -40,16 +36,16 @@
 }
 
 .item-details {
-  padding: 16px;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   border-top: 1px solid #E8E4DC;
   background: #FFFFFF;
 }
 
 .item-name {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
   color: #1A1814;
   line-height: 1.5;
@@ -63,36 +59,28 @@
 .item-prices {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .item-price-new {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #1A1814;
 }
 
 .item-price-old {
-  font-size: 13px;
+  font-size: 12px;
   color: #A09B94;
   text-decoration: line-through;
 }
 
 @media (max-width: 768px) {
-  .item-img-container {
-    height: 220px;
-  }
-
-  .item-details {
-    padding: 12px;
-  }
-
   .item-name {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .item-price-new {
-    font-size: 16px;
+    font-size: 14px;
   }
 }
