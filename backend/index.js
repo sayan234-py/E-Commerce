@@ -126,6 +126,17 @@ app.post("/addproduct", async (req, res) => {
   }
 });
 
+// ================= REMOVE PRODUCT =================
+app.post("/removeproduct", async (req, res) => {
+  try {
+    await Product.findOneAndDelete({ id: req.body.id });
+    res.json({ success: true });
+  } catch (err) {
+    console.log("Removeproduct error:", err.message);
+    res.status(500).json({ success: false, message: err.message });
+  }
+});
+
 // ================= AUTH MIDDLEWARE =================
 const fetchUser = (req, res, next) => {
   const token = req.headers["auth-token"];
