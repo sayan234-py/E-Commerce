@@ -62,6 +62,19 @@ app.get("/", (req, res) => {
   res.send("✅ Express server running");
 });
 
+// ================= UPLOAD IMAGE =================
+app.post("/upload", upload.single("image"), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).json({ success: false, error: "No file provided" });
+
+    const result = await uploadToCloudinary(req.file.buffer);
+    res.json({ success: true, image_url: result.secure_url });
+  } catch (err) {
+    console.log("Upload error:", err.message);
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 // ================= PRODUCT MODEL =================
 const productSchema = new mongoose.Schema({
   id: Number,
