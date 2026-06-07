@@ -1,105 +1,200 @@
-.offers {
-  width: 90%;
-  max-width: 1200px;
-  margin: 80px auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 60px 80px;
-  background: var(--text-primary);
-  border-radius: var(--radius-lg);
-  gap: 40px;
-  position: relative;
-  overflow: hidden;
+/* Importing heavy brutalist fonts (if not already imported globally) */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap');
+
+/* Main Offers Section Canvas */
+.genz-offers {
+    width: 100%;
+    max-width: 1400px;
+    min-height: 550px;
+    background-color: #00FFFF; /* Cyber Cyan to contrast the Lime Hero */
+    border: 4px solid #000;
+    position: relative;
+    display: flex;
+    box-shadow: 15px 15px 0px #000; /* Hard brutalist shadow */
+    font-family: 'Space Mono', monospace;
+    margin: 40px auto; 
 }
 
-.offers::before {
-  content: '';
-  position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: rgba(200, 151, 58, 0.08);
+/* Layout Grid */
+.offers-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    width: 100%;
 }
 
-.offers-left {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  position: relative;
-  z-index: 1;
-}
-
-.offers-left h1 {
-  font-family: var(--font-display);
-  color: var(--bg);
-  font-size: 56px;
-  font-weight: 300;
-  line-height: 1.1;
-  margin: 0;
-}
-
-.offers-left p {
-  color: var(--text-muted);
-  font-size: 14px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.offers-left button {
-  width: fit-content;
-  padding: 14px 36px;
-  background: var(--accent);
-  color: white;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.offers-left button:hover {
-  background: transparent;
-  color: var(--accent);
-}
-
-.offers-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  z-index: 1;
-}
-
-.offers-right img {
-  width: 100%;
-  max-width: 360px;
-  object-fit: contain;
-}
-
-@media (max-width: 768px) {
-  .offers {
+/* Left Content Panel */
+.offers-content {
+    padding: 60px;
+    display: flex;
     flex-direction: column;
-    padding: 48px 32px;
-    text-align: center;
-  }
+    justify-content: center;
+    border-right: 4px solid #000;
+    background-image: linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), 
+                      linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    /* Dims the checkerboard pattern so text is readable */
+    background-color: rgba(0, 255, 255, 0.9); 
+    background-blend-mode: overlay;
+}
 
-  .offers-left {
+/* Hard-Edged Warning Badge */
+.offers-badge {
+    display: inline-block;
+    background: #000; 
+    color: #00FFFF;
+    padding: 6px 18px;
+    border: 3px solid #000;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 25px;
+    align-self: flex-start;
+    text-transform: uppercase;
+}
+
+/* Massive Stretched Typography */
+.offers-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 6vw, 6rem);
+    font-weight: 800;
+    line-height: 0.95;
+    color: #000;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+}
+
+.offers-title .hollow {
+    display: block;
+    -webkit-text-stroke: 2px #000;
+    color: transparent; /* Hollow outline text effect */
+}
+
+.offers-title .solid {
+    color: #000;
+    -webkit-text-stroke: 0;
+}
+
+/* Brutalist Paragraph */
+.offers-desc {
+    background: #000;
+    color: #fff;
+    padding: 8px 12px;
+    display: inline-block;
+    align-self: flex-start;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+/* Hard-Edged Action Button */
+.btn-offers {
+    display: inline-block;
+    padding: 16px 32px;
+    background: #D6FF00; /* Acid Lime button to tie back to the Hero section */
+    color: #000;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    box-shadow: 8px 8px 0px #000;
+    transition: all 0.1s ease;
+    align-self: flex-start;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* Retro Button Hover Physics */
+.btn-offers:hover {
+    transform: translate(4px, 4px);
+    box-shadow: 4px 4px 0px #000;
+    background: #FF00FF; /* Flashes Cyber Pink on hover */
+    color: #fff;
+}
+
+/* Right Image Panel */
+.offers-image-panel {
+    padding: 50px;
+    display: flex;
+    justify-content: center;
     align-items: center;
-  }
+    background-color: #FF00FF; /* Cyber Pink background for the image side */
+    position: relative;
+}
 
-  .offers-left h1 {
-    font-size: 40px;
-  }
+/* Retro Polaroid/Archive Photo Container */
+.polaroid-container {
+    width: 90%;
+    max-width: 400px;
+    background: #fff;
+    border: 4px solid #000;
+    box-shadow: 12px 12px 0px #000;
+    padding: 20px 20px 60px 20px;
+    position: relative;
+    transform: rotate(3deg); /* Slight tilt for a messy/scrapbook feel */
+    transition: transform 0.3s ease;
+}
 
-  .offers-right img {
-    max-width: 260px;
-  }
+.polaroid-container:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+/* Fake Masking Tape */
+.tape {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 100px;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 2px solid #ccc;
+    z-index: 5;
+    box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Image Treatment */
+.polaroid-container img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border: 3px solid #000;
+    filter: contrast(1.2) saturate(1.2); /* Slightly deep-fried Y2K camera look */
+}
+
+/* Polaroid Text */
+.polaroid-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #000;
+}
+
+/* Mobile Responsive Breakpoints */
+@media (max-width: 900px) {
+    .genz-offers { 
+        box-shadow: 8px 8px 0px #000; 
+        border-width: 3px; 
+    }
+    .offers-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .offers-content { 
+        border-right: none; 
+        border-bottom: 4px solid #000; 
+        padding: 50px 20px; 
+    }
+    .offers-image-panel { 
+        padding: 40px 20px; 
+        height: 500px; 
+    }
+    .offers-title { 
+        font-size: 4rem; 
+    }
+    .polaroid-container {
+        transform: rotate(0deg);
+    }
 }
