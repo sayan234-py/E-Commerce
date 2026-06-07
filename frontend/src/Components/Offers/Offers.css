@@ -173,11 +173,12 @@
     color: #000;
 }
 
-/* Mobile Responsive Breakpoints */
+/* Mobile Responsive Breakpoints for OFFERS */
 @media (max-width: 900px) {
     .genz-offers { 
         box-shadow: 8px 8px 0px #000; 
         border-width: 3px; 
+        margin: 20px auto;
     }
     .offers-grid { 
         grid-template-columns: 1fr; 
@@ -185,16 +186,35 @@
     .offers-content { 
         border-right: none; 
         border-bottom: 4px solid #000; 
-        padding: 50px 20px; 
-    }
-    .offers-image-panel { 
         padding: 40px 20px; 
-        height: 500px; 
     }
     .offers-title { 
-        font-size: 4rem; 
+        /* Drops the minimum size to 2.2rem so "EXCLUSIVE" doesn't clip off the screen */
+        font-size: clamp(2.2rem, 11vw, 4rem); 
+        margin-bottom: 15px;
+        word-wrap: break-word;
+    }
+    .offers-desc {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    .btn-offers {
+        font-size: 1rem;
+        padding: 12px 24px;
+    }
+    .offers-image-panel { 
+        padding: 30px 20px; 
+        height: auto; 
     }
     .polaroid-container {
-        transform: rotate(0deg);
+        transform: rotate(1deg); /* Less aggressive tilt on mobile so it fits */
+        width: 100%;
+        max-width: 350px;
+        padding: 15px 15px 50px 15px; /* Tighter polaroid borders for mobile */
+    }
+    .polaroid-caption {
+        font-size: 0.9rem;
+        left: 15px;
+        bottom: 15px;
     }
 }
