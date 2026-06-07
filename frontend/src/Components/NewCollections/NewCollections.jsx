@@ -21,23 +21,33 @@ const NewCollections = () => {
   }, []);
 
   return (
-    <div className="new-collections">
-      <div className="section-header">
-        <span className="section-tag">Just Arrived</span>
-        <h1>New Collections</h1>
+    <div className="genz-new-collections">
+      
+      {/* Brutalist Header Block */}
+      <div className="nc-header">
+        <span className="nc-badge">! JUST ARRIVED</span>
+        <h1 className="nc-title">
+          <span className="hollow">NEW</span>
+          <div className="solid">COLLECTIONS.</div>
+        </h1>
       </div>
-      <div className="collections">
+
+      {/* Grid Container */}
+      <div className="nc-grid">
         {newCollection.map((item) => (
-          <Item
-            key={item.id}
-            id={item.id}
-            image={item.image}
-            name={item.name}
-            new_price={item.new_price}
-            old_price={item.old_price}
-          />
+          /* Brutalist wrapper forces the styling onto the Item component */
+          <div className="brutalist-item-wrapper" key={item.id}>
+            <Item
+              id={item.id}
+              image={item.image}
+              name={item.name}
+              new_price={item.new_price}
+              old_price={item.old_price}
+            />
+          </div>
         ))}
       </div>
+
     </div>
   );
 };
