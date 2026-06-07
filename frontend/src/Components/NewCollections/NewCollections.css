@@ -1,157 +1,56 @@
-/* Importing heavy brutalist fonts */
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap');
-
-/* Main Canvas with Retro Dot Matrix Background */
-.genz-new-collections {
-    width: 100%;
-    max-width: 1400px;
-    margin: 60px auto;
-    padding: 60px 40px;
-    background-color: #fff;
-    border: 4px solid #000;
-    box-shadow: 15px 15px 0px #000;
-    background-image: radial-gradient(#000 1.5px, transparent 1.5px);
-    background-size: 25px 25px; /* Retro printed dot matrix */
-    font-family: 'Space Mono', monospace;
+.new-collections {
+padding: 80px 60px;
+background: var(--bg-subtle);
 }
 
-/* Sticker-style Title Box */
-.nc-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 60px;
-    background: #fff; /* Opaque background to cover dots behind text */
-    padding: 30px 40px;
-    border: 4px solid #000;
-    box-shadow: 8px 8px 0px #000;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
+.new-collections .section-header {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 8px;
+margin-bottom: 48px;
+text-align: center;
 }
 
-/* High-Alert Red Badge */
-.nc-badge {
-    background: #FF3B30; 
-    color: #fff;
-    padding: 6px 18px;
-    border: 3px solid #000;
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    box-shadow: 4px 4px 0px #000;
+.new-collections .section-tag {
+font-size: 10px;
+font-weight: 500;
+letter-spacing: 4px;
+text-transform: uppercase;
+color: var(--accent);
 }
 
-/* Massive Stretched Typography */
-.nc-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 800;
-    line-height: 0.95;
-    color: #000;
-    text-transform: uppercase;
-    letter-spacing: -2px;
+.new-collections h1 {
+font-family: var(--font-display);
+font-size: 42px;
+font-weight: 300;
+color: var(--text-primary);
+letter-spacing: -0.5px;
 }
 
-.nc-title .hollow {
-    display: block;
-    -webkit-text-stroke: 2px #000;
-    color: transparent;
+.collections {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 20px;
 }
 
-.nc-title .solid {
-    color: #000;
-    -webkit-text-stroke: 0;
+@media (max-width: 1024px) {
+.collections {
+grid-template-columns: repeat(3, 1fr);
+}
 }
 
-/* Product Grid Layout */
-.nc-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    background: #fff;
-    padding: 30px;
-    border: 4px solid #000;
+@media (max-width: 768px) {
+.new-collections {
+padding: 60px 20px;
 }
 
-/* The Wrapper that forces your existing <Item /> to look Brutalist */
-.brutalist-item-wrapper {
-    border: 3px solid #000;
-    background: #fff;
-    box-shadow: 8px 8px 0px #000;
-    transition: all 0.2s ease;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
+.new-collections h1 {
+font-size: 32px;
 }
 
-/* Hover Physics: Item jumps and flashes Lime Green */
-.brutalist-item-wrapper:hover {
-    transform: translate(4px, 4px);
-    box-shadow: 4px 4px 0px #000;
-    background: #D6FF00; 
+.collections {
+grid-template-columns: repeat(2, 1fr);
+gap: 12px;
 }
-
-
-/* =========================================
-   STRICT MOBILE FALLBACK - NEW COLLECTIONS
-========================================= */
-@media (max-width: 900px) {
-    .genz-new-collections {
-        margin: 20px auto;
-        width: calc(100% - 20px);
-        padding: 30px 15px;
-        box-shadow: 4px 4px 0px #000;
-        border-width: 2px;
-        display: block;
-    }
-
-    .nc-header {
-        width: 100%;
-        border-width: 2px;
-        box-shadow: 4px 4px 0px #000;
-        padding: 25px 15px;
-        margin-bottom: 30px;
-    }
-
-    .nc-title {
-        font-size: 2.2rem;
-        letter-spacing: -1px;
-    }
-
-    .nc-badge {
-        font-size: 10px;
-        padding: 4px 10px;
-        box-shadow: 2px 2px 0px #000;
-    }
-
-    .nc-grid {
-        grid-template-columns: 1fr 1fr; /* Locks to 2 items per row on tablets/large phones */
-        gap: 15px;
-        padding: 15px;
-        border-width: 2px;
-    }
-
-    .brutalist-item-wrapper {
-        border-width: 2px;
-        box-shadow: 4px 4px 0px #000;
-        padding: 10px;
-    }
-
-    /* Removes hover jump on mobile so scrolling isn't glitchy */
-    .brutalist-item-wrapper:hover {
-        transform: none; 
-        box-shadow: 4px 4px 0px #000;
-        background: #fff; 
-    }
-}
-
-/* Very Small Phones Fallback */
-@media (max-width: 500px) {
-    .nc-grid {
-        grid-template-columns: 1fr; /* Stacks to 1 item per row on tiny screens */
-    }
 }
