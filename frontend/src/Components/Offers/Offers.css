@@ -1,220 +1,78 @@
-/* Importing heavy brutalist fonts (if not already imported globally) */
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap');
-
-/* Main Offers Section Canvas */
-.genz-offers {
-    width: 100%;
-    max-width: 1400px;
-    min-height: 550px;
-    background-color: #00FFFF; /* Cyber Cyan to contrast the Lime Hero */
-    border: 4px solid #000;
-    position: relative;
-    display: flex;
-    box-shadow: 15px 15px 0px #000; /* Hard brutalist shadow */
-    font-family: 'Space Mono', monospace;
-    margin: 40px auto; 
-}
-
-/* Layout Grid */
-.offers-grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    width: 100%;
-}
-
-/* Left Content Panel */
-.offers-content {
-    padding: 60px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-right: 4px solid #000;
-    background-image: linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), 
-                      linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000);
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
-    /* Dims the checkerboard pattern so text is readable */
-    background-color: rgba(0, 255, 255, 0.9); 
-    background-blend-mode: overlay;
-}
-
-/* Hard-Edged Warning Badge */
-.offers-badge {
-    display: inline-block;
-    background: #000; 
-    color: #00FFFF;
-    padding: 6px 18px;
-    border: 3px solid #000;
-    font-weight: bold;
-    font-size: 14px;
-    margin-bottom: 25px;
-    align-self: flex-start;
-    text-transform: uppercase;
-}
-
-/* Massive Stretched Typography */
-.offers-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 6vw, 6rem);
-    font-weight: 800;
-    line-height: 0.95;
-    color: #000;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    letter-spacing: -2px;
-}
-
-.offers-title .hollow {
-    display: block;
-    -webkit-text-stroke: 2px #000;
-    color: transparent; /* Hollow outline text effect */
-}
-
-.offers-title .solid {
-    color: #000;
-    -webkit-text-stroke: 0;
-}
-
-/* Brutalist Paragraph */
-.offers-desc {
-    background: #000;
-    color: #fff;
-    padding: 8px 12px;
-    display: inline-block;
-    align-self: flex-start;
-    font-weight: 700;
-    font-size: 0.9rem;
-    margin-bottom: 40px;
-    text-transform: uppercase;
-}
-
-/* Hard-Edged Action Button */
-.btn-offers {
-    display: inline-block;
-    padding: 16px 32px;
-    background: #D6FF00; /* Acid Lime button to tie back to the Hero section */
-    color: #000;
-    font-family: 'Space Mono', monospace;
-    font-weight: 700;
-    text-transform: uppercase;
-    border: 3px solid #000;
-    box-shadow: 8px 8px 0px #000;
-    transition: all 0.1s ease;
-    align-self: flex-start;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-
-/* Retro Button Hover Physics */
-.btn-offers:hover {
-    transform: translate(4px, 4px);
-    box-shadow: 4px 4px 0px #000;
-    background: #FF00FF; /* Flashes Cyber Pink on hover */
-    color: #fff;
-}
-
-/* Right Image Panel */
-.offers-image-panel {
-    padding: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #FF00FF; /* Cyber Pink background for the image side */
-    position: relative;
-}
-
-/* Retro Polaroid/Archive Photo Container */
-.polaroid-container {
-    width: 90%;
-    max-width: 400px;
-    background: #fff;
-    border: 4px solid #000;
-    box-shadow: 12px 12px 0px #000;
-    padding: 20px 20px 60px 20px;
-    position: relative;
-    transform: rotate(3deg); /* Slight tilt for a messy/scrapbook feel */
-    transition: transform 0.3s ease;
-}
-
-.polaroid-container:hover {
-    transform: rotate(0deg) scale(1.02);
-}
-
-/* Fake Masking Tape */
-.tape {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-2deg);
-    width: 100px;
-    height: 30px;
-    background-color: rgba(255, 255, 255, 0.6);
-    border: 2px solid #ccc;
-    z-index: 5;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Image Treatment */
-.polaroid-container img {
-    width: 100%;
-    aspect-ratio: 1/1;
-    object-fit: cover;
-    border: 3px solid #000;
-    filter: contrast(1.2) saturate(1.2); /* Slightly deep-fried Y2K camera look */
-}
-
-/* Polaroid Text */
-.polaroid-caption {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: #000;
-}
-
-/* Mobile Responsive Breakpoints for OFFERS */
+/* =========================================
+   STRICT MOBILE FALLBACK - OFFERS SECTION
+========================================= */
 @media (max-width: 900px) {
     .genz-offers { 
-        box-shadow: 8px 8px 0px #000; 
-        border-width: 3px; 
-        margin: 20px auto;
+        box-shadow: 4px 4px 0px #000; 
+        border-width: 2px; 
+        margin: 10px; 
+        width: calc(100% - 20px); /* Forces screen fit */
+        height: auto;
+        min-height: auto;
+        display: block; /* Stacks everything cleanly */
     }
+    
     .offers-grid { 
-        grid-template-columns: 1fr; 
+        display: block; /* Kills grid for safe stacking */
+        width: 100%;
     }
+    
     .offers-content { 
         border-right: none; 
-        border-bottom: 4px solid #000; 
-        padding: 40px 20px; 
-    }
-    .offers-title { 
-        /* Drops the minimum size to 2.2rem so "EXCLUSIVE" doesn't clip off the screen */
-        font-size: clamp(2.2rem, 11vw, 4rem); 
-        margin-bottom: 15px;
-        word-wrap: break-word;
-    }
-    .offers-desc {
-        font-size: 0.8rem;
-        padding: 6px 10px;
-    }
-    .btn-offers {
-        font-size: 1rem;
-        padding: 12px 24px;
-    }
-    .offers-image-panel { 
-        padding: 30px 20px; 
-        height: auto; 
-    }
-    .polaroid-container {
-        transform: rotate(1deg); /* Less aggressive tilt on mobile so it fits */
+        border-bottom: 2px solid #000; 
+        padding: 40px 15px; 
         width: 100%;
-        max-width: 350px;
-        padding: 15px 15px 50px 15px; /* Tighter polaroid borders for mobile */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
-    .polaroid-caption {
+    
+    .offers-badge {
+        font-size: 10px;
+        padding: 4px 8px;
+        align-self: center;
+    }
+    
+    .offers-title { 
+        font-size: 2.2rem; /* Hardcoded safe size */
+        line-height: 1;
+        margin-bottom: 15px;
+        letter-spacing: -1px;
+    }
+    
+    .offers-desc {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+        align-self: center;
+        margin-bottom: 25px;
+    }
+    
+    .btn-offers {
         font-size: 0.9rem;
-        left: 15px;
-        bottom: 15px;
+        padding: 10px 20px;
+        align-self: center;
+    }
+    
+    .offers-image-panel { 
+        padding: 20px; 
+        height: auto; 
+        width: 100%;
+    }
+    
+    .polaroid-container {
+        transform: rotate(0deg); /* Removes rotation completely to prevent clipping */
+        width: 100%;
+        max-width: 300px; /* Limits size on small phones */
+        margin: 0 auto; /* Centers it perfectly */
+        padding: 10px 10px 40px 10px;
+        border-width: 2px;
+        box-shadow: 6px 6px 0px #000;
+    }
+    
+    .polaroid-caption {
+        font-size: 0.8rem;
+        left: 10px;
+        bottom: 10px;
     }
 }
