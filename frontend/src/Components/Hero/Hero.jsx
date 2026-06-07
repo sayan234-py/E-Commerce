@@ -1,37 +1,56 @@
 import React from 'react';
 import './Hero.css';
-// import hand_icon from '../Assets/hand_icon.png';
-// import arrow_icon from '../Assets/arrow.png';
-// import hero_image from '../Assets/hero_image.png';
 
-const hero_image= "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737857/hero_image_kpfv69.png"
-const hand_icon = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737941/hand_icon_yvtcbs.png"
-const arrow_icon = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770738007/arrow_ucrdyz.png"
+// Your original assets (commented out just in case you need them later)
+// const hero_image_original = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737857/hero_image_kpfv69.png"
+// const hand_icon = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737941/hand_icon_yvtcbs.png"
+// const arrow_icon = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770738007/arrow_ucrdyz.png"
+
+// The curated Gen-Z streetwear asset for the retro window
+const hero_image = "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&h=1000&q=80";
 
 const Hero = () => {
   return (
-    <div className="hero">
-      <div className="hero-left">
-        <h2>NEW ARRIVALS ONLY</h2>
+    <div className="genz-banner">
+      
+      {/* Scrolling Marquee Tape */}
+      <div className="marquee">
+        <span>
+          * NEW DROP * LIMITED STOCK * COP IT NOW * NEW DROP * LIMITED STOCK * COP IT NOW * NEW DROP * LIMITED STOCK * COP IT NOW * NEW DROP * LIMITED STOCK * COP IT NOW * NEW DROP *
+        </span>
+      </div>
 
-        <div className="hero-text">
-          <div className="hand-icon-line">
-            <p>new</p>
-            <img src={hand_icon} alt="hand icon" />
+      <div className="grid-container">
+        {/* Left Side: Typography & Interactions */}
+        <div className="content">
+          <div className="badge">Y2K ARCHIVE</div>
+          
+          <h1 className="title">
+            <span>LATEST</span>
+            <div className="filled">DROPS.</div>
+          </h1>
+          
+          <a href="#shop" className="btn-brutalist">
+            SHOP NOW ↗
+          </a>
+        </div>
+
+        {/* Right Side: Retro Computer Window */}
+        <div className="image-panel">
+          <div className="photo-container">
+            {/* Fake Web 1.0 OS Window Bar */}
+            <div className="window-bar">
+              <div className="dot red"></div>
+              <div className="dot yellow"></div>
+              <div className="dot green"></div>
+            </div>
+            
+            {/* Photo Asset */}
+            <img src={hero_image} alt="Streetwear Archive" />
           </div>
-          <p>collections</p>
-          <p>for everyone</p>
-        </div>
-
-        <div className="hero-latest-button">
-          <span>Latest Collection</span>
-          <img src={arrow_icon} alt="arrow icon" />
         </div>
       </div>
-
-      <div className="hero-right">
-        <img src={hero_image} alt="hero" />
-      </div>
+      
     </div>
   );
 };
