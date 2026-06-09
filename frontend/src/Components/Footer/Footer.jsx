@@ -8,51 +8,64 @@ const whatsapp_icon = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v177088
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <div className="footer-top">
-        <div className="footer-logo">
-          <img src={footer_logo} alt="Footer Logo" />
-          <p>Nandi Fashions</p>
-          <span className="footer-logo-desc">Your destination for curated fashion — quality pieces for every occasion, every style.</span>
-          <div className="footer-social-icons">
-            <div className="footer-icons-container">
-              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">
+    <div className="genz-footer">
+      <div className="footer-grid">
+        
+        {/* Left Info Panel */}
+        <div className="footer-brand-panel">
+          <div className="footer-logo-container">
+            <img src={footer_logo} alt="Footer Logo" className="brutalist-logo" />
+            <h2>NANDI FASHIONS</h2>
+          </div>
+          <p className="brand-manifesto">
+            YOUR DESTINATION FOR CURATED STREETWEAR — HARD-HITTING PIECES FOR EVERY STYLE GRID.
+          </p>
+          
+          {/* Social Icons inside a unified sticker block */}
+          <div className="social-sticker-box">
+            <span className="sticker-label">CONNECT //</span>
+            <div className="icons-flex">
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="icon-link">
                 <img src={instagram_icon} alt="Instagram" />
               </a>
-              <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer" className="icon-link">
                 <img src={pintester_icon} alt="Pinterest" />
               </a>
-              <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.whatsapp.com/" target="_blank" rel="noopener noreferrer" className="icon-link">
                 <img src={whatsapp_icon} alt="WhatsApp" />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="footer-col">
-          <h4>Explore</h4>
-          <ul className="footer-links">
-            <li><a href="/mens">Men</a></li>
-            <li><a href="/womens">Women</a></li>
-            <li><a href="/kids">Kids</a></li>
-            <li><a href="/">New Arrivals</a></li>
+        {/* Links Panel 1 */}
+        <div className="footer-nav-panel">
+          <div className="nav-header-badge">EXPLORE</div>
+          <ul className="brutalist-links">
+            <li><a href="/mens">MEN ↗</a></li>
+            <li><a href="/womens">WOMEN ↗</a></li>
+            <li><a href="/kids">KIDS ↗</a></li>
+            <li><a href="/">NEW ARRIVALS ↗</a></li>
           </ul>
         </div>
 
-        <div className="footer-col">
-          <h4>Support</h4>
-          <ul className="footer-links">
-            <li><a href="/">About Us</a></li>
-            <li><a href="/">Contact</a></li>
-            <li><a href="/">Privacy Policy</a></li>
-            <li><a href="/">Terms of Service</a></li>
+        {/* Links Panel 2 */}
+        <div className="footer-nav-panel support-panel">
+          <div className="nav-header-badge support-badge">SUPPORT</div>
+          <ul className="brutalist-links">
+            <li><a href="/">ABOUT US</a></li>
+            <li><a href="/">CONTACT</a></li>
+            <li><a href="/">PRIVACY</a></li>
+            <li><a href="/">TERMS</a></li>
           </ul>
         </div>
+
       </div>
 
-      <div className="footer-copyright">
-        <p>© 2025 Nandi Fashions. All rights reserved.</p>
-        <p>Crafted with care in Durgapur, West Bengal</p>
+      {/* Bottom Ticker/Copyright Row */}
+      <div className="footer-meta-row">
+        <p className="copyright-tag">© 2026 NANDI FASHIONS. OUT NOW.</p>
+        <p className="location-tag">CRAFTED WITH CARE IN DURGAPUR, WB // DESIGNED OUTSIDE THE BOX</p>
       </div>
     </div>
   )
