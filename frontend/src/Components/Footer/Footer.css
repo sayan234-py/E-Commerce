@@ -1,129 +1,232 @@
-.footer {
-  background: var(--text-primary);
-  color: var(--bg);
-  padding: 60px;
+/* Importing heavy brutalist fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@700;800&display=swap');
+
+/* Main Footer Container */
+.genz-footer {
+    width: 100%;
+    max-width: 1400px;
+    margin: 80px auto 20px auto;
+    background-color: #111; /* Pitch black foundation to match header tape */
+    color: #fff;
+    border: 4px solid #000;
+    box-shadow: 15px 15px 0px #000;
+    font-family: 'Space Mono', monospace;
+    position: relative;
+    overflow: hidden;
 }
 
-.footer-top {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 60px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid rgba(247, 245, 240, 0.1);
-  margin-bottom: 32px;
+/* Master Layout Layout Grid */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.8fr 0.8fr;
+    width: 100%;
 }
 
-.footer-logo {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.footer-logo img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  filter: brightness(10);
-}
-
-.footer-logo p {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--bg);
-}
-
-.footer-logo-desc {
-  font-size: 13px;
-  color: rgba(247, 245, 240, 0.5);
-  line-height: 1.7;
-  max-width: 260px;
-}
-
-.footer-col h4 {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 20px;
-}
-
-.footer-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.footer-links li a {
-  font-size: 14px;
-  color: white;
-  transition: var(--transition);
-}
-
-.footer-links li a:hover {
-  color: var(--bg);
-}
-
-.footer-social-icons {
-  margin-top: 0;
-}
-
-.footer-icons-container {
-  display: flex;
-  gap: 16px;
-}
-
-.footer-icons-container a {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(247, 245, 240, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition);
-}
-
-.footer-icons-container a:hover {
-  border-color: var(--accent);
-  background: var(--accent);
-}
-
-.footer-icons-container img {
-  width: 18px;
-  height: 18px;
-  filter: brightness(10);
-  object-fit: contain;
-}
-
-.footer-copyright {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.footer-copyright p {
-  font-size: 12px;
-  color: rgba(247, 245, 240, 0.35);
-  letter-spacing: 0.5px;
-}
-
-@media (max-width: 768px) {
-  .footer {
-    padding: 48px 24px;
-  }
-
-  .footer-top {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-
-  .footer-copyright {
+/* Brand Section Styling */
+.footer-brand-panel {
+    padding: 50px;
+    border-right: 4px solid #000;
+    background-color: #1a1a1a;
+    display: flex;
     flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.brutalist-logo {
+    width: 50px;
+    height: 50px;
+    filter: invert(1); /* Flips original dark logo to clean neon white */
+    border: 2px solid #fff;
+    padding: 5px;
+}
+
+.footer-logo-container h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #D6FF00; /* Neon Acid Lime Accent */
+}
+
+.brand-manifesto {
+    font-size: 0.9rem;
+    color: #ccc;
+    line-height: 1.5;
+    margin-bottom: 35px;
+}
+
+/* Connect Container Sticker block */
+.social-sticker-box {
+    background: #FF00FF; /* Cyber Pink */
+    border: 3px solid #000;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 6px 6px 0px #000;
+    max-width: fit-content;
+}
+
+.sticker-label {
+    font-weight: 700;
+    color: #000;
+    font-size: 0.85rem;
+    margin-right: 15px;
+}
+
+.icons-flex {
+    display: flex;
     gap: 12px;
-    text-align: center;
-  }
+}
+
+.icon-link {
+    background: #fff;
+    border: 2px solid #000;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease;
+}
+
+.icon-link img {
+    width: 18px;
+    height: 18px;
+}
+
+.icon-link:hover {
+    transform: translate(-2px, -2px) scale(1.1);
+    box-shadow: 2px 2px 0px #000;
+    background: #D6FF00;
+}
+
+/* Nav Link Sections Panels */
+.footer-nav-panel {
+    padding: 50px 40px;
+    border-right: 4px solid #000;
+    background-color: #222;
+}
+
+.support-panel {
+    border-right: none;
+    background-color: #2a2a2a;
+}
+
+/* Structural Header Badges */
+.nav-header-badge {
+    display: inline-block;
+    background-color: #00FFFF; /* Cyber Cyan */
+    color: #000;
+    padding: 6px 16px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px #000;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+}
+
+.support-badge {
+    background-color: #D6FF00; /* Acid Lime for support */
+}
+
+/* Links List Stack */
+.brutalist-links {
+    list-style: none;
+}
+
+.brutalist-links li {
+    margin-bottom: 16px;
+}
+
+.brutalist-links a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: color 0.1s ease, padding-left 0.2s ease;
+    display: inline-block;
+}
+
+.brutalist-links a:hover {
+    color: #FF00FF; /* Neon Pink glow text link style */
+    padding-left: 6px;
+}
+
+/* Copyright Meta Bottom Row */
+.footer-meta-row {
+    background: #000;
+    border-top: 4px solid #000;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.copyright-tag {
+    font-weight: 700;
+    color: #D6FF00;
+}
+
+
+/* =========================================
+   STRICT MOBILE FALLBACK - GENERAL FOOTER
+========================================= */
+@media (max-width: 900px) {
+    .genz-footer {
+        margin: 40px 10px 10px 10px;
+        width: calc(100% - 20px);
+        box-shadow: 6px 6px 0px #000;
+        border-width: 3px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr; /* Complete breakdown stacking vertical axis */
+    }
+
+    .footer-brand-panel {
+        border-right: none;
+        border-bottom: 4px solid #000;
+        padding: 35px 20px;
+    }
+
+    .footer-logo-container h2 {
+        font-size: 1.6rem;
+    }
+
+    .social-sticker-box {
+        width: 100%;
+        max-width: none;
+    }
+
+    .footer-nav-panel {
+        border-right: none;
+        border-bottom: 4px solid #000;
+        padding: 35px 20px;
+    }
+
+    .support-panel {
+        border-bottom: none;
+    }
+
+    .nav-header-badge {
+        margin-bottom: 20px;
+    }
+
+    .footer-meta-row {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding: 25px 20px;
+    }
 }
