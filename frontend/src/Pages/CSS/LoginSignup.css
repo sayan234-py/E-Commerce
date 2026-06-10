@@ -274,3 +274,22 @@
   .form-inner { padding: 48px 28px; }
   .auth-form h1 { font-size: 24px; }
 }
+
+/* ===== SWITCH LINK ===== */
+.auth-switch {
+  margin-top: 16px;
+  font-size: 13px;
+  color: #888;
+}
+
+.auth-switch span {
+  color: #C8973A;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.auth-switch span:hover {
+  color: #a67c2e;
+  text-decoration: underline;
+}
