@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./LoginSignup.css";
+import "./CSS/LoginSignup.css";
 
 const API_URL = "https://e-commerce-1-6kbc.onrender.com";
 
