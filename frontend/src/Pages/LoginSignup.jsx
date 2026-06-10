@@ -55,6 +55,9 @@ const LoginSignup = () => {
     }
   };
 
+  const goToSignUp = () => setState("Sign Up");
+  const goToLogin = () => setState("Login");
+
   return (
     <div className="auth-wrapper">
       <div className={`auth-container ${state === "Sign Up" ? "right-panel-active" : ""}`}>
@@ -64,28 +67,11 @@ const LoginSignup = () => {
           <div className="form-inner">
             <h1>Create Account</h1>
             <p className="auth-subtitle">Join Nandi Fashions for exclusive drops.</p>
-            <input
-              name="username"
-              value={formData.username}
-              onChange={changeHandelar}
-              type="text"
-              placeholder="Full Name"
-            />
-            <input
-              name="email"
-              value={formData.email}
-              onChange={changeHandelar}
-              type="email"
-              placeholder="Email Address"
-            />
-            <input
-              name="password"
-              value={formData.password}
-              onChange={changeHandelar}
-              type="password"
-              placeholder="Password"
-            />
+            <input name="username" value={formData.username} onChange={changeHandelar} type="text" placeholder="Full Name" />
+            <input name="email" value={formData.email} onChange={changeHandelar} type="email" placeholder="Email Address" />
+            <input name="password" value={formData.password} onChange={changeHandelar} type="password" placeholder="Password" />
             <button className="auth-btn" onClick={signup}>Sign Up</button>
+            <p className="auth-switch">Already have an account? <span onClick={goToLogin}>Sign In</span></p>
           </div>
         </div>
 
@@ -94,46 +80,26 @@ const LoginSignup = () => {
           <div className="form-inner">
             <h1>Welcome Back</h1>
             <p className="auth-subtitle">Log in to access your curated collection.</p>
-            <input
-              name="email"
-              value={formData.email}
-              onChange={changeHandelar}
-              type="email"
-              placeholder="Email Address"
-            />
-            <input
-              name="password"
-              value={formData.password}
-              onChange={changeHandelar}
-              type="password"
-              placeholder="Password"
-            />
+            <input name="email" value={formData.email} onChange={changeHandelar} type="email" placeholder="Email Address" />
+            <input name="password" value={formData.password} onChange={changeHandelar} type="password" placeholder="Password" />
             <button className="auth-btn" onClick={login}>Sign In</button>
+            <p className="auth-switch">Don't have an account? <span onClick={goToSignUp}>Sign Up</span></p>
           </div>
         </div>
 
         {/* SLIDING OVERLAY */}
         <div className="auth-overlay-container">
           <div className="auth-overlay">
-
-            {/* LEFT PANEL — shown when Sign Up is active */}
             <div className="overlay-panel overlay-left">
               <h2>Already a Member?</h2>
               <p>Log in with your details to stay connected.</p>
-              <button className="ghost-btn" onClick={() => setState("Login")}>
-                Sign In
-              </button>
+              <button className="ghost-btn" onClick={goToLogin}>Sign In</button>
             </div>
-
-            {/* RIGHT PANEL — shown when Login is active */}
             <div className="overlay-panel overlay-right">
               <h2>New Here?</h2>
               <p>Start your fashion journey with Nandi Fashions.</p>
-              <button className="ghost-btn" onClick={() => setState("Sign Up")}>
-                Sign Up
-              </button>
+              <button className="ghost-btn" onClick={goToSignUp}>Sign Up</button>
             </div>
-
           </div>
         </div>
 
