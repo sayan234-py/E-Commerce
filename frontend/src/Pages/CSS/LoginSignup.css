@@ -1,109 +1,281 @@
-.loginsignup {
-  min-height: calc(100vh - 72px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-subtle);
-  padding: 60px 20px;
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap');
+
+/* Main Wrapper to isolate styles from the rest of the app */
+.sliding-auth-wrapper {
+    font-family: 'Manrope', sans-serif;
+    background: #f4f0ea; /* Warm elegant beige background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
 }
 
-.loginsignup-container {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  padding: 56px 52px;
-  width: 100%;
-  max-width: 440px;
+.sliding-auth-wrapper * {
+    box-sizing: border-box;
 }
 
-.loginsignup-container h1 {
-  font-family: var(--font-display);
-  font-size: 36px;
-  font-weight: 300;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
+/* Typography Overrides */
+.sliding-auth-wrapper h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin: 0 0 10px;
+    font-size: 2.5rem;
+    color: #111;
 }
 
-.loginsignup-container > p {
-  font-size: 13px;
-  color: var(--text-muted);
-  margin-bottom: 36px;
-  letter-spacing: 0.3px;
+.sliding-auth-wrapper h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2rem;
+    color: #fff;
+    margin: 0 0 10px;
 }
 
-.loginsignup-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 28px;
+.sliding-auth-wrapper p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    margin: 10px 0 30px;
+    color: #fff;
 }
 
-.loginsignup-fields input {
-  width: 100%;
-  padding: 14px 16px;
-  border: 1px solid var(--border);
-  background: var(--bg);
-  font-size: 14px;
-  color: var(--text-primary);
-  outline: none;
-  transition: var(--transition);
-  border-radius: var(--radius);
+.sliding-auth-wrapper p.subtitle {
+    color: #555;
 }
 
-.loginsignup-fields input::placeholder {
-  color: var(--text-muted);
+.sliding-auth-wrapper .forgot-link {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+    font-weight: 600;
+    transition: color 0.3s;
 }
 
-.loginsignup-fields input:focus {
-  border-color: var(--text-primary);
-  background: var(--bg-card);
+.sliding-auth-wrapper .forgot-link:hover {
+    color: #000;
+    text-decoration: underline;
 }
 
-.loginsignup-container > button {
-  width: 100%;
-  padding: 16px;
-  background: var(--text-primary);
-  color: var(--bg);
-  border: 1px solid var(--text-primary);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: var(--transition);
-  margin-bottom: 24px;
-  border-radius: var(--radius);
+/* Form Styling */
+.sliding-auth-wrapper form {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
 }
 
-.loginsignup-container > button:hover {
-  background: var(--accent);
-  border-color: var(--accent);
+.sliding-auth-wrapper input {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 15px 20px;
+    margin: 8px 0;
+    width: 100%;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9rem;
+    transition: border-color 0.3s;
 }
 
-.loginsignup-container > p {
-  font-size: 13px;
-  color: var(--text-secondary);
-  text-align: center;
+.sliding-auth-wrapper input:focus {
+    outline: none;
+    border-color: #111;
 }
 
-.loginsignup-container > p span {
-  color: var(--accent);
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition);
+/* Buttons */
+.sliding-auth-wrapper button {
+    border-radius: 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 16px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 80ms ease-in, background-color 0.3s;
+    margin-top: 15px;
 }
 
-.loginsignup-container > p span:hover {
-  color: var(--accent-dark);
-  text-decoration: underline;
+.sliding-auth-wrapper button:active {
+    transform: scale(0.95);
 }
 
-@media (max-width: 480px) {
-  .loginsignup-container {
-    padding: 40px 28px;
-  }
+.action-btn {
+    border: 1px solid #111;
+    background-color: #111;
+    color: #FFFFFF;
+}
 
-  .loginsignup-container h1 {
-    font-size: 30px;
-  }
+.ghost-btn {
+    background-color: transparent;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+}
+
+.ghost-btn:hover {
+    background-color: #FFFFFF;
+    color: #111;
+}
+
+/* Main Container Setup */
+.sliding-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    width: 900px;
+    max-width: 100%;
+    min-height: 600px;
+}
+
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+/* Sign In sits on the right */
+.sign-in-container {
+    left: 50%;
+    width: 50%;
+    z-index: 2;
+}
+
+/* Sign Up sits on the left (Hidden initially) */
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* --- THE SLIDING ANIMATION --- */
+.sliding-container.right-panel-active .sign-in-container {
+    transform: translateX(-100%);
+}
+
+.sliding-container.right-panel-active .sign-up-container {
+    transform: translateX(0);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+}
+
+@keyframes show {
+    0%, 49.99% { opacity: 0; z-index: 1; }
+    50%, 100% { opacity: 1; z-index: 5; }
+}
+
+/* Overlay Base */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.sliding-container.right-panel-active .overlay-container {
+    transform: translateX(100%);
+}
+
+.overlay {
+    background: #111;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: #FFFFFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.sliding-container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Left Overlay Image (Visible when Sign Up is active)
+  Using an edgy streetwear/youth fashion vibe 
+*/
+.overlay-left {
+    transform: translateX(-20%);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.7)), 
+                      url('https://res.cloudinary.com/dp2h1zqb4/image/upload/v1781087851/tanya-layko-QINaeQQHghQ-unsplash_vqt1um.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.sliding-container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+/* Right Overlay Image (Visible initially on the Login view)
+  Using a vibrant Gen-Z fashion portrait 
+*/
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+                      url('https://res.cloudinary.com/dp2h1zqb4/image/upload/v1781088154/atikh-bana-_KaMTEmJnxY-unsplash_n7mn5f.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.sliding-container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+/* Responsive Fallback for smaller screens */
+@media (max-width: 768px) {
+    .sliding-container {
+        min-height: 800px;
+        display: flex;
+        flex-direction: column;
+    }
+    .form-container {
+        position: relative;
+        width: 100%;
+        height: 50%;
+        left: 0 !important;
+        transform: none !important;
+        opacity: 1 !important;
+        z-index: 1 !important;
+    }
+    .overlay-container {
+        display: none; /* Hide sliding mechanism on mobile */
+    }
+    /* Only show the active form on mobile */
+    .sign-in-container { display: flex; }
+    .sign-up-container { display: none; }
+    .sliding-container.right-panel-active .sign-in-container { display: none; }
+    .sliding-container.right-panel-active .sign-up-container { display: flex; }
 }
