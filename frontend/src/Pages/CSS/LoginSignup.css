@@ -49,27 +49,27 @@
   text-align: center;
 }
 
-/* Sign In — sits on right by default */
+/* Sign In — sits on LEFT by default */
 .signin-form {
-  left: 50%;
+  left: 0;
   z-index: 2;
 }
 
-/* Sign Up — hidden on left by default */
+/* Sign Up — hidden on RIGHT by default */
 .signup-form {
-  left: 0;
+  left: 50%;
   opacity: 0;
   z-index: 1;
 }
 
-/* ===== ACTIVE STATE — shift forms ===== */
+/* ===== ACTIVE STATE ===== */
 .auth-container.right-panel-active .signin-form {
-  transform: translateX(100%);
+  transform: translateX(-100%);
   opacity: 0;
 }
 
 .auth-container.right-panel-active .signup-form {
-  transform: translateX(100%);
+  transform: translateX(-100%);
   opacity: 1;
   z-index: 5;
   animation: fadeIn 0.6s ease-in-out;
@@ -112,6 +112,7 @@
 }
 
 .form-inner input::placeholder { color: #bbb; }
+
 .form-inner input:focus {
   border-color: #111;
   background: #fff;
@@ -140,11 +141,11 @@
   border-color: #C8973A;
 }
 
-/* ===== OVERLAY ===== */
+/* ===== OVERLAY — starts on RIGHT ===== */
 .auth-overlay-container {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
   width: 50%;
   height: 100%;
   overflow: hidden;
@@ -153,12 +154,12 @@
 }
 
 .auth-container.right-panel-active .auth-overlay-container {
-  transform: translateX(100%);
+  transform: translateX(-100%);
 }
 
 .auth-overlay {
   position: relative;
-  left: -100%;
+  left: 0;
   width: 200%;
   height: 100%;
   background: #111;
@@ -167,7 +168,7 @@
 }
 
 .auth-container.right-panel-active .auth-overlay {
-  transform: translateX(50%);
+  transform: translateX(-50%);
 }
 
 /* ===== OVERLAY PANELS ===== */
@@ -185,23 +186,9 @@
   transition: transform 0.6s ease-in-out;
 }
 
-.overlay-left {
-  left: 0;
-  transform: translateX(-20%);
-  background-image:
-    linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.72)),
-    url('https://images.unsplash.com/photo-1492288991661-058aa541ff43?auto=format&fit=crop&w=800&q=80');
-  background-size: cover;
-  background-position: center;
-}
-
-.auth-container.right-panel-active .overlay-left {
-  transform: translateX(0);
-}
-
+/* Right panel visible by default (Login state) */
 .overlay-right {
   right: 0;
-  transform: translateX(0);
   background-image:
     linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.65)),
     url('https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=80');
@@ -209,8 +196,14 @@
   background-position: center;
 }
 
-.auth-container.right-panel-active .overlay-right {
-  transform: translateX(20%);
+/* Left panel hidden by default, slides in when Sign Up active */
+.overlay-left {
+  left: 0;
+  background-image:
+    linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.72)),
+    url('https://images.unsplash.com/photo-1492288991661-058aa541ff43?auto=format&fit=crop&w=800&q=80');
+  background-size: cover;
+  background-position: center;
 }
 
 .overlay-panel h2 {
@@ -261,7 +254,6 @@
     border-radius: 8px;
   }
 
-  /* Stack forms vertically, hide overlay */
   .auth-form {
     position: relative;
     width: 100%;
@@ -273,16 +265,12 @@
 
   .auth-overlay-container { display: none; }
 
-  /* Only show active form */
   .signin-form { display: flex; }
   .signup-form { display: none; }
 
   .auth-container.right-panel-active .signin-form { display: none; }
   .auth-container.right-panel-active .signup-form { display: flex; }
 
-  .form-inner {
-    padding: 48px 28px;
-  }
-
+  .form-inner { padding: 48px 28px; }
   .auth-form h1 { font-size: 24px; }
 }
