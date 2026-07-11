@@ -183,8 +183,8 @@ The admin panel runs at `http://localhost:5173`
 | GET    | `/newcollections`  | ❌        | Latest 8 products             |
 | GET    | `/popularwomen`    | ❌        | Popular women's products      |
 | POST   | `/addproduct`      | ❌        | Add a new product             |
-| POST   | `/signup`          | ❌        | Register a new user           |
-| POST   | `/login`           | ❌        | Login and receive JWT token   |
+| POST   | `/signup`          | ✅ JWT    | Register a new user           |
+| POST   | `/login`           | ✅ JWT    | Login and receive JWT token   |
 | POST   | `/getcart`         | ✅ JWT    | Get user's cart data          |
 | POST   | `/addtocart`       | ✅ JWT    | Add item to cart              |
 | POST   | `/removefromcart`  | ✅ JWT    | Remove item from cart         |
