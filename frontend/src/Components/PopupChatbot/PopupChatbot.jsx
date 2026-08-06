@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Popupchatbot.css';
+import API_URL from "../../config";
 
 const PopupChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +55,6 @@ const PopupChatbot = () => {
         content: inputValue,
       });
 
-      const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
       const response = await fetch(`${API_URL}/api/chatbot/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
