@@ -302,7 +302,7 @@ app.get("/newcollections", async (req, res) => {
 });
 
 /* ---------------- Popular in Women ---------------- */
-app.get("/popinwoman", async (req, res) => {
+app.get("/popularwomen", async (req, res) => {
   try {
     const products = await Product.find({ category: "women" }).limit(8);
     res.json(products);
