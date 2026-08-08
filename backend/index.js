@@ -315,7 +315,7 @@ app.get("/popularwomen", async (req, res) => {
    CHATBOT ROUTES WITH DATABASE PRODUCTS
    ============================================ */
 
-// Helper function to format products for the chatbot
+/ Helper function to format products for the chatbot
 const formatProductsForPrompt = (products) => {
   if (!products || products.length === 0) {
     return "Currently, we don't have products in our catalog.";
