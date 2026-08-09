@@ -13,34 +13,34 @@
   overflow: hidden;
   border-radius: 8px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(90deg, #fff5f0 0%, #ffe8e0 100%);
 }
 
-/* Banner Content - Flex Layout */
-.banner-content {
-  display: flex;
+/* Banner Image */
+.banner-image {
+  width: 100%;
   height: 100%;
-  align-items: center;
-  justify-content: space-between;
-  padding: 40px 60px;
-  position: relative;
+  object-fit: cover;
+  animation: bannerFadeIn 0.6s ease-in-out;
+  display: block;
 }
 
-/* Left Section - Text Content */
-.banner-text-section {
-  flex: 1;
+@keyframes bannerFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Dots Container - Bottom Left */
+.banner-dots-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
   display: flex;
-  align-items: center;
-  gap: 30px;
+  gap: 10px;
   z-index: 10;
-}
-
-/* Dots Container */
-.banner-dots {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0;
 }
 
 /* Individual Dots */
@@ -49,7 +49,7 @@
   height: 12px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.6);
   cursor: pointer;
   transition: all 0.3s ease;
   padding: 0;
@@ -57,164 +57,15 @@
 }
 
 .banner-dot:hover {
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.9);
   transform: scale(1.2);
 }
 
 .banner-dot.active {
   background: #ff6b4a;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   box-shadow: 0 0 12px rgba(255, 107, 74, 0.6);
-}
-
-/* Text Content */
-.banner-text-content {
-  flex: 1;
-}
-
-.banner-title {
-  font-size: 64px;
-  font-weight: 800;
-  color: #ff6b4a;
-  margin: 0;
-  line-height: 1.1;
-  letter-spacing: -2px;
-  animation: slideInLeft 0.8s ease-out;
-}
-
-.banner-offer {
-  font-size: 24px;
-  color: #333;
-  margin: 10px 0 20px 0;
-  font-weight: 500;
-  animation: slideInLeft 0.8s ease-out 0.1s both;
-}
-
-.banner-cta-button {
-  background: linear-gradient(135deg, #ff6b4a 0%, #ff8c6b 100%);
-  color: white;
-  border: none;
-  padding: 16px 40px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 107, 74, 0.3);
-  animation: slideInLeft 0.8s ease-out 0.2s both;
-}
-
-.banner-cta-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 107, 74, 0.5);
-}
-
-.banner-cta-button:active {
-  transform: translateY(-1px);
-}
-
-/* Right Section - Product Image */
-.banner-image-section {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-.banner-product-image {
-  height: 100%;
-  width: auto;
-  object-fit: contain;
-  animation: slideInRight 0.8s ease-out;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
-}
-
-/* Animations */
-@keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Navigation Arrows */
-.banner-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.8);
-  color: #ff6b4a;
-  border: 2px solid #ff6b4a;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  font-size: 24px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  z-index: 15;
-  font-weight: bold;
-}
-
-.banner-arrow:hover {
-  background: #ff6b4a;
-  color: white;
-  transform: translateY(-50%) scale(1.1);
-  box-shadow: 0 4px 12px rgba(255, 107, 74, 0.4);
-}
-
-.banner-arrow-left {
-  left: 20px;
-}
-
-.banner-arrow-right {
-  right: 20px;
-}
-
-/* Counter */
-.banner-counter {
-  position: absolute;
-  bottom: 20px;
-  right: 30px;
-  display: flex;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #ff6b4a;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 8px 14px;
-  border-radius: 20px;
-  z-index: 15;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.banner-counter span {
-  display: flex;
-  align-items: center;
-}
-
-.banner-counter span:nth-child(2) {
-  color: #999;
-  opacity: 0.7;
 }
 
 /* Empty State */
@@ -236,27 +87,6 @@
   .banner-carousel-main {
     height: 350px;
   }
-
-  .banner-content {
-    padding: 30px 40px;
-  }
-
-  .banner-title {
-    font-size: 48px;
-  }
-
-  .banner-offer {
-    font-size: 18px;
-  }
-
-  .banner-cta-button {
-    padding: 14px 32px;
-    font-size: 14px;
-  }
-
-  .banner-text-section {
-    gap: 20px;
-  }
 }
 
 /* Mobile Responsive */
@@ -265,56 +95,20 @@
     height: 300px;
   }
 
-  .banner-content {
-    flex-direction: column;
-    padding: 20px;
-    gap: 20px;
-  }
-
-  .banner-text-section {
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    gap: 15px;
-  }
-
-  .banner-title {
-    font-size: 36px;
-  }
-
-  .banner-offer {
-    font-size: 16px;
-    margin: 5px 0 15px 0;
-  }
-
-  .banner-cta-button {
-    padding: 12px 28px;
-    font-size: 13px;
-  }
-
-  .banner-image-section {
-    width: 100%;
-    height: 150px;
-  }
-
-  .banner-product-image {
-    height: 100%;
-  }
-
-  .banner-dots {
-    flex-direction: row;
+  .banner-dots-container {
+    bottom: 15px;
+    left: 15px;
     gap: 8px;
   }
 
-  .banner-arrow {
-    width: 38px;
-    height: 38px;
-    font-size: 18px;
+  .banner-dot {
+    width: 10px;
+    height: 10px;
   }
 
-  .banner-counter {
-    font-size: 12px;
-    padding: 6px 10px;
+  .banner-dot.active {
+    width: 12px;
+    height: 12px;
   }
 }
 
@@ -324,52 +118,20 @@
     height: 250px;
   }
 
-  .banner-content {
-    padding: 15px;
-    gap: 10px;
+  .banner-dots-container {
+    bottom: 12px;
+    left: 12px;
+    gap: 6px;
   }
 
-  .banner-title {
-    font-size: 28px;
-    letter-spacing: -1px;
+  .banner-dot {
+    width: 8px;
+    height: 8px;
   }
 
-  .banner-offer {
-    font-size: 14px;
-    margin: 5px 0 10px 0;
-  }
-
-  .banner-cta-button {
-    padding: 10px 20px;
-    font-size: 12px;
-  }
-
-  .banner-dots {
-    display: none; /* Hide dots on very small screens */
-  }
-
-  .banner-arrow {
-    width: 34px;
-    height: 34px;
-    font-size: 16px;
-  }
-
-  .banner-arrow-left {
-    left: 10px;
-  }
-
-  .banner-arrow-right {
-    right: 10px;
-  }
-
-  .banner-counter {
-    font-size: 11px;
-    bottom: 10px;
-    right: 10px;
-  }
-
-  .banner-image-section {
-    height: 120px;
+  .banner-dot.active {
+    width: 10px;
+    height: 10px;
   }
 }
 
@@ -377,13 +139,5 @@
 @media (max-width: 375px) {
   .banner-carousel-main {
     height: 220px;
-  }
-
-  .banner-title {
-    font-size: 24px;
-  }
-
-  .banner-offer {
-    font-size: 12px;
   }
 }
