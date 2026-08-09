@@ -33,13 +33,42 @@ const BannerCarousel = ({ banners = [] }) => {
 
   return (
     <div className="banner-carousel-container">
-      {/* Main Banner */}
+      {/* Main Banner with Content */}
       <div className="banner-carousel-main">
-        <img
-          src={banners[currentBanner]}
-          alt={`Banner ${currentBanner + 1}`}
-          className="banner-image"
-        />
+        <div className="banner-content">
+          {/* Left Section - Text Content */}
+          <div className="banner-text-section">
+            {/* Dots on the left */}
+            {banners.length > 1 && (
+              <div className="banner-dots">
+                {banners.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`banner-dot ${index === currentBanner ? 'active' : ''}`}
+                    onClick={() => goToBanner(index)}
+                    aria-label={`Go to banner ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Banner Text */}
+            <div className="banner-text-content">
+              <h2 className="banner-title">GET 50% OFF</h2>
+              <p className="banner-offer">Valid till 20 Mins</p>
+              <button className="banner-cta-button">Shop now</button>
+            </div>
+          </div>
+
+          {/* Right Section - Product Image */}
+          <div className="banner-image-section">
+            <img
+              src={banners[currentBanner]}
+              alt={`Banner ${currentBanner + 1}`}
+              className="banner-product-image"
+            />
+          </div>
+        </div>
 
         {/* Navigation Arrows */}
         {banners.length > 1 && (
@@ -52,28 +81,16 @@ const BannerCarousel = ({ banners = [] }) => {
             </button>
           </>
         )}
-      </div>
 
-      {/* Sliding Dots on the Left */}
-      {banners.length > 1 && (
-        <div className="banner-dots-container">
-          <div className="banner-dots">
-            {banners.map((_, index) => (
-              <button
-                key={index}
-                className={`banner-dot ${index === currentBanner ? 'active' : ''}`}
-                onClick={() => goToBanner(index)}
-                aria-label={`Go to banner ${index + 1}`}
-              />
-            ))}
-          </div>
+        {/* Counter */}
+        {banners.length > 1 && (
           <div className="banner-counter">
             <span>{currentBanner + 1}</span>
             <span>/</span>
             <span>{banners.length}</span>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
