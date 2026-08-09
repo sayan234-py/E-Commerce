@@ -9,9 +9,26 @@ import Cart from './Pages/Cart';
 import Footer from './Components/Footer/Footer';
 import PopupChatbot from './Components/PopupChatbot/PopupChatbot';
 
-const men_banner = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737681/banner_mens_kw6tph.png"
-const women_banner = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737026/banner_women_vtvhc1.png"
-const kid_banner = "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737682/banner_kids_abxmkm.png"
+// Men's Banners
+const men_banners = [
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737681/banner_mens_kw6tph.png",
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737681/banner_mens_secondary.png", // Add your second banner URL
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737681/banner_mens_tertiary.png" // Add your third banner URL
+];
+
+// Women's Banners
+const women_banners = [
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737026/banner_women_vtvhc1.png",
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737026/banner_women_secondary.png", // Add your second banner URL
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737026/banner_women_tertiary.png" // Add your third banner URL
+];
+
+// Kids Banners
+const kid_banners = [
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737682/banner_kids_abxmkm.png",
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737682/banner_kids_secondary.png", // Add your second banner URL
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737682/banner_kids_tertiary.png" // Add your third banner URL
+];
 
 function App() {
   return (
@@ -20,9 +37,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Shop />} />
-          <Route path='/mens' element={<ShopCategory category="men" banner={men_banner} />} />
-          <Route path='/womens' element={<ShopCategory category="women" banner={women_banner} />} />
-          <Route path='/kids' element={<ShopCategory category="kid" banner={kid_banner} />} />
+          <Route path='/mens' element={<ShopCategory banners={men_banners} category="men" />} />
+          <Route path='/womens' element={<ShopCategory banners={women_banners} category="women" />} />
+          <Route path='/kids' element={<ShopCategory banners={kid_banners} category="kid" />} />
           <Route path='/product' element={<Product/>}>
             <Route path=':productId' element={<Product/>} />
           </Route>
