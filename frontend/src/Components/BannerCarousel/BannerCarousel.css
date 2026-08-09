@@ -1,0 +1,243 @@
+/* Banner Carousel Container */
+.banner-carousel-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* Main Banner */
+.banner-carousel-main {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: bannerFadeIn 0.6s ease-in-out;
+}
+
+@keyframes bannerFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Navigation Arrows */
+.banner-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  border: none;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+  backdrop-filter: blur(5px);
+}
+
+.banner-arrow:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.banner-arrow-left {
+  left: 20px;
+}
+
+.banner-arrow-right {
+  right: 20px;
+}
+
+/* Dots Container (Left Side) */
+.banner-dots-container {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 20;
+}
+
+/* Dots */
+.banner-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px 10px;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.banner-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.banner-dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(255, 255, 255, 1);
+}
+
+.banner-dot.active {
+  background: #667eea;
+  border-color: #667eea;
+  width: 14px;
+  height: 14px;
+  box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+}
+
+/* Counter */
+.banner-counter {
+  display: flex;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.banner-counter span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-counter span:first-child {
+  color: #667eea;
+  font-weight: bold;
+  min-width: 20px;
+}
+
+.banner-counter span:last-child {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Empty State */
+.banner-carousel-empty {
+  width: 100%;
+  height: 400px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .banner-carousel-main {
+    height: 300px;
+  }
+
+  .banner-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  .banner-arrow-left {
+    left: 10px;
+  }
+
+  .banner-arrow-right {
+    right: 10px;
+  }
+
+  .banner-dots-container {
+    left: 10px;
+    gap: 12px;
+  }
+
+  .banner-dots {
+    padding: 12px 8px;
+    gap: 10px;
+  }
+
+  .banner-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .banner-dot.active {
+    width: 12px;
+    height: 12px;
+  }
+
+  .banner-counter {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-carousel-main {
+    height: 200px;
+  }
+
+  .banner-arrow {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+
+  .banner-dots-container {
+    display: none; /* Hide dots on very small screens */
+  }
+
+  .banner-arrow-left {
+    left: 5px;
+  }
+
+  .banner-arrow-right {
+    right: 5px;
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .banner-carousel-main {
+    height: 350px;
+  }
+
+  .banner-arrow {
+    width: 40px;
+    height: 40px;
+  }
+}
