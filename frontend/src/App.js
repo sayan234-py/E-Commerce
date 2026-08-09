@@ -9,25 +9,25 @@ import Cart from './Pages/Cart';
 import Footer from './Components/Footer/Footer';
 import PopupChatbot from './Components/PopupChatbot/PopupChatbot';
 
-// Men's Category Banners - Product images on right
+// Men's Category Banners
 const men_banners = [
-  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737681/banner_mens_kw6tph.png", // Male model 1
-  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737681/banner_mens_secondary.png", // Male model 2 (add your URL)
-  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737681/banner_mens_tertiary.png" // Male model 3 (add your URL)
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737681/banner_mens_kw6tph.png",
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737681/banner_mens_secondary.png",
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737681/banner_mens_tertiary.png"
 ];
 
-// Women's Category Banners - Product images on right
+// Women's Category Banners
 const women_banners = [
-  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737026/banner_women_vtvhc1.png", // Female model 1
-  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737026/banner_women_secondary.png", // Female model 2 (add your URL)
-  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737026/banner_women_tertiary.png" // Female model 3 (add your URL)
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737026/banner_women_vtvhc1.png",
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737026/banner_women_secondary.png",
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737026/banner_women_tertiary.png"
 ];
 
-// Kids Category Banners - Product images on right
+// Kids Category Banners
 const kid_banners = [
-  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737682/banner_kids_abxmkm.png", // Kids model 1
-  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737682/banner_kids_secondary.png", // Kids model 2 (add your URL)
-  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737682/banner_kids_tertiary.png" // Kids model 3 (add your URL)
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737682/banner_kids_abxmkm.png",
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737682/banner_kids_secondary.png",
+  "https://res.cloudinary.com/dp2h1zqb4/image/upload/v1770737682/banner_kids_tertiary.png"
 ];
 
 function App() {
