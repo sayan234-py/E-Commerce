@@ -365,6 +365,7 @@ IMPORTANT BEHAVIORS:
 - Keep responses concise but detailed
 - Use emojis to make responses engaging
 - If customer wants something we don't have, be honest and suggest similar alternatives
+- Product cards with images are shown automatically beneath your reply when a match is found, so don't repeat long price/ID lists — keep the text short and let the cards do the showing
 
 When recommending products, format like:
 "Based on your needs, I suggest:
@@ -375,6 +376,39 @@ When recommending products, format like:
 2. **[Product Name]** - ₹[Price]
 ✓ Perfect for [use case]
 ✓ ID: [product_id]"`;
+};
+
+// Stopwords ignored when extracting search keywords from a user message
+const CHAT_SEARCH_STOPWORDS = new Set([
+"the","a","an","for","of","and","to","in","on","with","show","me","find",
+"looking","look","want","need","some","any","please","have","do","you",
+"can","give","suggest","recommend","under","below","above","near","best",
+"good","nice","hi","hey","hello","buy","get","cheap","new","product",
+"products","item","items","please","would","like","about",
+]);
+
+// Extract meaningful keywords from the latest user message and match them
+// against product name/category so the frontend can render product cards.
+const findMatchingProducts = async (userText, limit = 4) => {
+if (!userText || typeof userText !== "string") return [];
+
+const words = userText.toLowerCase().match(/[a-z]+/g) || [];
+const keywords = [...new Set(words.filter((w) => w.length > 2 && !CHAT_SEARCH_STOPWORDS.has(w)))];
+
+if (keywords.length === 0) return [];
+
+const orConditions = keywords.flatMap((word) => [
+{ name: { $regex: word, $options: "i" } },
+{ category: { $regex: word, $options: "i" } },
+]);
+
+try {
+const matches = await Product.find({ $or: orConditions }).limit(limit);
+return matches;
+} catch (error) {
+console.error("Product search error:", error);
+return [];
+}
 };
 
 /* POST /api/chatbot/chat (Streaming with DB) */
@@ -404,6 +438,10 @@ error: "No products in database. Please add products first.",
 // Get dynamic system prompt with actual products
 const systemPrompt = getSystemPrompt(products);
 
+// Find products matching the customer's latest message for card display
+const lastUserMessage = [...messages].reverse().find((m) => m.role === "user");
+const matchedProducts = await findMatchingProducts(lastUserMessage?.content);
+
 // Set headers for Server-Sent Events (SSE)
 res.setHeader("Content-Type", "text/event-stream");
 res.setHeader("Cache-Control", "no-cache");
@@ -428,6 +466,11 @@ res.write(
 `data: ${JSON.stringify({ content: chunk.choices[0].delta.content })}\n\n`
 );
 }
+}
+
+// Send matched products as a dedicated SSE event so the frontend can render cards
+if (matchedProducts.length > 0) {
+res.write(`data: ${JSON.stringify({ products: matchedProducts })}\n\n`);
 }
 
 res.write("data: [DONE]\n\n");
@@ -465,6 +508,10 @@ error: "No products in database.",
 // Get dynamic system prompt with actual products
 const systemPrompt = getSystemPrompt(products);
 
+// Find products matching the customer's latest message for card display
+const lastUserMessage = [...messages].reverse().find((m) => m.role === "user");
+const matchedProducts = await findMatchingProducts(lastUserMessage?.content);
+
 const response = await groqClient.chat.completions.create({
 model: "llama-3.1-8b-instant",
 messages: [
@@ -478,6 +525,7 @@ max_tokens: 500,
 res.json({
 success: true,
 response: response.choices[0].message.content,
+products: matchedProducts,
 });
 } catch (error) {
 console.error("Chatbot Error:", error);
