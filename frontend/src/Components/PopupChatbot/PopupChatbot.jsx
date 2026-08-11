@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './Popupchatbot.css';
 import API_URL from "../../config";
+import ChatProductCard from './ChatProductCard';
 
 const PopupChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,6 +105,16 @@ const PopupChatbot = () => {
                     )
                   );
                 }
+
+                if (parsed.products) {
+                  setMessages((prev) =>
+                    prev.map((m) =>
+                      m.id === botMessageId
+                        ? { ...m, products: parsed.products }
+                        : m
+                    )
+                  );
+                }
               } catch (e) {
                 // Skip invalid JSON
               }
@@ -175,6 +186,17 @@ const PopupChatbot = () => {
                   {message.content}
                   {message.isStreaming && <span className="typing-indicator">▌</span>}
                 </div>
+                {message.products && message.products.length > 0 && (
+                  <div className="chat-product-cards">
+                    {message.products.map((product) => (
+                      <ChatProductCard
+                        key={product.id}
+                        product={product}
+                        onNavigate={() => setIsOpen(false)}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
             <div ref={messagesEndRef} />
