@@ -449,7 +449,7 @@ res.setHeader("Connection", "keep-alive");
 
 // Call Groq API with streaming
 const stream = await groqClient.chat.completions.create({
-model: "llama-3.1-8b-instant",
+model: "openai/gpt-oss-20b",
 messages: [
 { role: "system", content: systemPrompt },
 ...messages,
@@ -476,8 +476,12 @@ res.write(`data: ${JSON.stringify({ products: matchedProducts })}\n\n`);
 res.write("data: [DONE]\n\n");
 res.end();
 } catch (error) {
-console.error("Chatbot Error:", error);
+console.error("Chatbot Error:", error?.error || error?.message || error);
+if (!res.headersSent) {
 res.status(500).json({ error: "Failed to generate response" });
+} else {
+res.end();
+}
 }
 });
 
@@ -513,7 +517,7 @@ const lastUserMessage = [...messages].reverse().find((m) => m.role === "user");
 const matchedProducts = await findMatchingProducts(lastUserMessage?.content);
 
 const response = await groqClient.chat.completions.create({
-model: "llama-3.1-8b-instant",
+model: "openai/gpt-oss-20b",
 messages: [
 { role: "system", content: systemPrompt },
 ...messages,
@@ -528,7 +532,7 @@ response: response.choices[0].message.content,
 products: matchedProducts,
 });
 } catch (error) {
-console.error("Chatbot Error:", error);
+console.error("Chatbot Error:", error?.error || error?.message || error);
 res.status(500).json({ error: "Failed to generate response" });
 }
 });
